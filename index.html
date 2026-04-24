@@ -2,7 +2,7 @@
 <html lang="it">
 <head>
 <meta charset="UTF-8">
-<title>Raffaele Palermo | Independent Analysis</title>
+<title>Raffaele Palermo</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="style.css">
 </head>
@@ -11,147 +11,61 @@
 
 <div class="page">
 
-<!-- TOP BAR -->
-<div class="topbar">
+<header class="header">
+  <img src="logo.png" class="logo">
+  <h1>Raffaele Palermo</h1>
+  <p>Analisi indipendente tra media, potere e narrazione</p>
+</header>
 
-  <img src="logo.png" class="logo-img">
-
-  <div class="brand">RAFFAELE PALERMO</div>
-  <div class="tag">Independent Journalism & Critical Analysis</div>
-
-</div>
-
-<!-- HERO -->
-<div class="hero">
-
-  <div class="label">LATEST ANALYSIS</div>
-
-  <h1>Analisi indipendente tra media, potere e narrazione</h1>
-
-  <a class="cta" href="https://youtube.com" target="_blank">
+<section class="hero">
+  <a href="https://youtube.com" target="_blank" class="cta">
     ▶ Guarda su YouTube
   </a>
+</section>
 
-  <div class="micro">
-    Nuovi contenuti settimanali
-  </div>
-
-</div>
-
-<!-- VIDEO FEED (3 VIDEO) -->
-<div class="section">
-
+<section class="videos">
   <h2>Ultimi contenuti</h2>
+  <div id="video-grid"></div>
+</section>
 
-  <div id="video-grid" class="video-grid"></div>
+<section class="about">
+  <h2>Chi sono</h2>
+  <p>
+  Mi occupo di analisi critica, giornalismo indipendente e comunicazione,
+  con un focus sulle dinamiche di potere e sulla manipolazione dell’informazione.
+  </p>
+  <p class="highlight">
+  Il mio obiettivo non è dirti cosa pensare.
+  È renderti più difficile da convincere.
+  </p>
+</section>
 
-</div>
+<section class="social">
+  <a href="https://youtube.com">YouTube</a>
+  <a href="https://t.me">Telegram</a>
+  <a href="https://instagram.com">Instagram</a>
+</section>
 
-<!-- ABOUT -->
-<div class="section">
-
-<h2>Chi è Raffaele Palermo</h2>
-
-<p>
-Mi occupo di analisi critica, giornalismo indipendente e comunicazione, con un focus su ciò che accade dietro le notizie: dinamiche di potere, narrazioni e manipolazione dell’informazione.
-</p>
-
-<p>
-Ho iniziato nel 2020, nel pieno del periodo pandemico, pubblicando online le mie ricerche e analisi.
-Nel 2021 ho sviluppato un progetto editoriale che è diventato rapidamente un punto di riferimento in Italia per l’informazione indipendente, arrivando a superare le 60.000 visite giornaliere.
-</p>
-
-<p>
-Nel 2022 ho scelto di fermarmi per riorganizzare il lavoro, approfondire e costruire una struttura più solida.
-</p>
-
-<p>
-Oggi il progetto continua attraverso i contenuti online e una community attiva su più piattaforme.
-</p>
-
-<p class="highlight">
-Qui non trovi narrazioni costruite per piacere, ma analisi pensate per mettere in discussione.
-</p>
-
-<p class="final">
-🎯 Il mio obiettivo non è dirti cosa pensare. È renderti più difficile da convincere.
-</p>
-
-<p class="signature">E non è un caso.</p>
-
-</div>
-
-<!-- SOCIAL -->
-<div class="section">
-
-<h2>Reti</h2>
-
-<div class="socials">
-  <a href="https://youtube.com">▶</a>
-  <a href="https://t.me">✈</a>
-  <a href="https://instagram.com">📸</a>
-  <a href="https://x.com">𝕏</a>
-</div>
-
-</div>
-
-<!-- NEWSLETTER -->
-<div class="section newsletter">
-
-<h2>Newsletter</h2>
-
-<p>Ricevi analisi senza filtri e algoritmi.</p>
-
-<input type="email" placeholder="La tua email">
-<button>Iscriviti</button>
-
-</div>
-
-<!-- FOOTER -->
-<div class="footer">
-⚠️ Sito ufficiale del progetto. Nessuna affiliazione con domini terzi non autorizzati.
-</div>
+<footer>
+⚠️ Questo è l’unico sito ufficiale.
+</footer>
 
 </div>
 
 <script>
-const sections = document.querySelectorAll('.section');
-
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if(entry.isIntersecting){
-      entry.target.classList.add('visible');
-    }
+fetch("https://TUO-WORKER.workers.dev")
+.then(res => res.json())
+.then(videos => {
+  let html = "";
+  videos.forEach(v => {
+    html += `
+      <div class="video">
+        <iframe src="https://www.youtube.com/embed/${v.id}" allowfullscreen></iframe>
+      </div>
+    `;
   });
-}, { threshold: 0.15 });
-
-sections.forEach(section => {
-  observer.observe(section);
+  document.getElementById("video-grid").innerHTML = html;
 });
-
-/* ===== YOUTUBE FEED 3 VIDEO ===== */
-const channelId = "UCXXXXXXXXXXXX"; // tuo ID canale
-
-fetch(`https://www.youtube.com/feeds/videos.xml?channel_id=${channelId}`)
-  .then(res => res.text())
-  .then(str => new window.DOMParser().parseFromString(str, "text/xml"))
-  .then(data => {
-    const entries = data.querySelectorAll("entry");
-
-    let html = "";
-
-    for (let i = 0; i < 3; i++) {
-      const videoId = entries[i].getElementsByTagName("yt:videoId")[0].textContent;
-
-      html += `
-        <div class="video-card">
-          <iframe src="https://www.youtube.com/embed/${videoId}" allowfullscreen></iframe>
-        </div>
-      `;
-    }
-
-    document.getElementById("video-grid").innerHTML = html;
-  });
 </script>
 
 </body>
