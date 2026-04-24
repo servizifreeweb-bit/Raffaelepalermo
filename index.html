@@ -1,142 +1,215 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-  <meta charset="UTF-8">
-  <title>Raffaele Palermo</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<title>Raffaele Palermo | Analisi e Informazione Indipendente</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #0b0b0b;
-      color: #ffffff;
-      text-align: center;
-    }
+<style>
+body {
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  background: #0a0a0a;
+  color: #eaeaea;
+}
 
-    .container {
-      max-width: 800px;
-      margin: auto;
-      padding: 60px 20px;
-    }
+/* HEADER */
+.header {
+  text-align: center;
+  padding: 70px 20px 30px;
+  border-bottom: 1px solid #222;
+}
 
-    h1 {
-      font-size: 42px;
-      margin-bottom: 10px;
-    }
+.logo {
+  font-size: 34px;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
 
-    .subtitle {
-      color: #cccccc;
-      font-size: 18px;
-      margin-bottom: 30px;
-    }
+.tag {
+  margin-top: 10px;
+  color: #aaa;
+  font-size: 15px;
+  font-family: Arial, sans-serif;
+}
 
-    .btn {
-      display: block;
-      margin: 12px auto;
-      padding: 14px;
-      width: 85%;
-      max-width: 320px;
-      border-radius: 8px;
-      text-decoration: none;
-      font-weight: bold;
-    }
+/* BADGE */
+.badge {
+  display: inline-block;
+  margin-top: 15px;
+  padding: 5px 10px;
+  border: 1px solid #444;
+  font-size: 12px;
+  color: #bbb;
+  letter-spacing: 1px;
+}
 
-    .youtube { background: #ff0000; color: white; }
-    .telegram { background: #0088cc; color: white; }
-    .instagram { background: #e1306c; color: white; }
-    .x { background: #1da1f2; color: white; }
+/* CONTAINER */
+.container {
+  max-width: 850px;
+  margin: auto;
+  padding: 40px 20px;
+}
 
-    iframe {
-      width: 100%;
-      height: 360px;
-      margin-top: 30px;
-      border-radius: 10px;
-    }
+/* VIDEO */
+.video {
+  margin-top: 30px;
+}
 
-    .section {
-      margin-top: 50px;
-    }
+iframe {
+  width: 100%;
+  height: 420px;
+  border: none;
+}
 
-    .newsletter {
-      margin-top: 20px;
-    }
+/* SECTION TITLE */
+h2 {
+  font-size: 20px;
+  margin-top: 60px;
+  border-left: 3px solid #ff0000;
+  padding-left: 10px;
+  font-family: Arial, sans-serif;
+}
 
-    input {
-      padding: 12px;
-      width: 70%;
-      max-width: 300px;
-      border: none;
-      border-radius: 6px;
-    }
+/* TEXT */
+p {
+  line-height: 1.8;
+  color: #cfcfcf;
+  font-size: 16px;
+}
 
-    button {
-      padding: 12px 16px;
-      border: none;
-      background: white;
-      color: black;
-      border-radius: 6px;
-      cursor: pointer;
-      margin-left: 5px;
-    }
+/* SOCIAL */
+.socials {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 25px;
+}
 
-    .note {
-      margin-top: 60px;
-      font-size: 13px;
-      color: #777;
-    }
-  </style>
+.socials a {
+  width: 42px;
+  height: 42px;
+  border: 1px solid #333;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: #fff;
+  transition: 0.2s;
+}
+
+.socials a:hover {
+  transform: scale(1.1);
+  border-color: #ff0000;
+}
+
+/* NEWSLETTER */
+.newsletter {
+  margin-top: 40px;
+  padding: 20px;
+  border: 1px solid #222;
+  text-align: center;
+}
+
+input {
+  padding: 10px;
+  width: 60%;
+  max-width: 280px;
+  border: none;
+}
+
+button {
+  padding: 10px 15px;
+  background: #ff0000;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+/* FOOTER NOTE */
+.note {
+  margin-top: 60px;
+  font-size: 12px;
+  color: #666;
+  text-align: center;
+  border-top: 1px solid #222;
+  padding-top: 20px;
+}
+</style>
 </head>
 
 <body>
 
-  <div class="container">
+<!-- HEADER -->
+<div class="header">
+  <div class="logo">RAFFAELE PALERMO</div>
+  <div class="tag">Analisi indipendente • Informazione critica • Geopolitica e media</div>
+  <div class="badge">EDITORIAL PLATFORM</div>
+</div>
 
-    <h1>Raffaele Palermo</h1>
+<div class="container">
 
-    <p class="subtitle">
-      Giornalismo indipendente e analisi critica della realtà contemporanea
-    </p>
+<!-- VIDEO -->
+<div class="video">
+  <iframe src="https://www.youtube.com/embed/ID_VIDEO" allowfullscreen></iframe>
+</div>
 
-    <!-- VIDEO YOUTUBE -->
-    <div class="section">
-      <iframe 
-        src="https://www.youtube.com/embed/watch?v=GWmvQkifP54" 
-        frameborder="0" 
-        allowfullscreen>
-      </iframe>
-    </div>
+<!-- CTA -->
+<h2>Ultimo contenuto</h2>
+<p>Analisi e approfondimenti su dinamiche geopolitiche, media e narrazioni contemporanee.</p>
 
-    <!-- CTA YOUTUBE -->
-    <div class="section">
-      <a href="https://youtube.com" class="btn youtube">▶ Iscriviti su YouTube</a>
-    </div>
+<!-- CHI SONO -->
+<h2>Profilo editoriale</h2>
 
-    <!-- SOCIAL -->
-    <div class="section">
-      <a href="https://t.me" class="btn telegram">📡 Telegram</a>
-      <a href="https://instagram.com" class="btn instagram">📸 Instagram</a>
-      <a href="https://x.com" class="btn x">𝕏 X (Twitter)</a>
-    </div>
+<p>
+Mi occupo di analisi critica, giornalismo indipendente e comunicazione, con un focus su ciò che accade dietro le notizie: dinamiche di potere, narrazioni e manipolazione dell’informazione.
+</p>
 
-    <!-- NEWSLETTER -->
-    <div class="section newsletter">
-      <h3>Newsletter</h3>
-      <p>Ricevi aggiornamenti senza algoritmi</p>
+<p>
+Ho iniziato nel 2020, nel pieno del periodo pandemico, pubblicando online le mie ricerche e analisi.
+Nel 2021 il progetto ha raggiunto oltre 60.000 visite giornaliere, diventando un punto di riferimento nell’informazione indipendente in Italia.
+</p>
 
-      <form>
-        <input type="email" placeholder="La tua email">
-        <button type="submit">Iscriviti</button>
-      </form>
-    </div>
+<p>
+Oggi il lavoro prosegue attraverso contenuti online e una community attiva su più piattaforme.
+</p>
 
-    <!-- NOTE AUTORITÀ -->
-    <div class="note">
-      ⚠️ Sito ufficiale del progetto Raffaele Palermo.<br>
-      Non affiliato a domini o pagine che utilizzano impropriamente il nome.
-    </div>
+<p>
+Non sono legato a testate o gruppi editoriali. Questo consente un approccio autonomo, senza vincoli esterni.
+</p>
 
-  </div>
+<p>
+Qui non trovi narrazioni semplificate, ma analisi che mettono in discussione ciò che viene dato per scontato.
+</p>
+
+<p><strong>Il mio obiettivo non è dirti cosa pensare, ma renderti più difficile da convincere.</strong></p>
+
+<!-- SOCIAL -->
+<h2>Reti</h2>
+
+<div class="socials">
+  <a href="https://youtube.com">▶</a>
+  <a href="https://t.me">✈</a>
+  <a href="https://instagram.com">📸</a>
+  <a href="https://x.com">𝕏</a>
+</div>
+
+<!-- NEWSLETTER -->
+<h2>Newsletter</h2>
+
+<div class="newsletter">
+  <p>Ricevi analisi senza algoritmi e filtri.</p>
+  <input type="email" placeholder="La tua email">
+  <button>Iscriviti</button>
+</div>
+
+<!-- FOOTER -->
+<div class="note">
+  Sito editoriale indipendente. Nessuna affiliazione con gruppi editoriali o politici.
+</div>
+
+</div>
 
 </body>
 </html>
