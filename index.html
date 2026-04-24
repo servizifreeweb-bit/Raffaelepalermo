@@ -13,8 +13,12 @@
 
 <!-- TOP BAR -->
 <div class="topbar">
+
+  <img src="logo.png" class="logo-img">
+
   <div class="brand">RAFFAELE PALERMO</div>
   <div class="tag">Independent Journalism & Critical Analysis</div>
+
 </div>
 
 <!-- HERO -->
@@ -24,7 +28,7 @@
 
   <h1>Analisi indipendente tra media, potere e narrazione</h1>
 
-  <a class="cta" href="https://www.youtube.com/@RaffaelePalermo" target="_blank">
+  <a class="cta" href="https://youtube.com" target="_blank">
     ▶ Guarda su YouTube
   </a>
 
@@ -34,10 +38,12 @@
 
 </div>
 
-<!-- VIDEO -->
-<div class="section video">
+<!-- VIDEO FEED (3 VIDEO) -->
+<div class="section">
 
-  <iframe src="https://www.youtube.com/embed/0IDDW1ZtiuY" allowfullscreen></iframe>
+  <h2>Ultimi contenuti</h2>
+
+  <div id="video-grid" class="video-grid"></div>
 
 </div>
 
@@ -60,13 +66,7 @@ Nel 2022 ho scelto di fermarmi per riorganizzare il lavoro, approfondire e costr
 </p>
 
 <p>
-Oggi il progetto continua attraverso i contenuti online e una community attiva su più piattaforme:
-oltre 25.000 iscritti su YouTube, 3.000 su Telegram, 6.000 su TikTok, e migliaia di persone che seguono e partecipano ogni giorno.
-</p>
-
-<p>
-Non sono legato a testate giornalistiche, gruppi editoriali o interessi politici.
-Questo mi permette di lavorare senza pressioni esterne e affrontare temi che spesso vengono evitati o semplificati.
+Oggi il progetto continua attraverso i contenuti online e una community attiva su più piattaforme.
 </p>
 
 <p class="highlight">
@@ -77,45 +77,39 @@ Qui non trovi narrazioni costruite per piacere, ma analisi pensate per mettere i
 🎯 Il mio obiettivo non è dirti cosa pensare. È renderti più difficile da convincere.
 </p>
 
-<p>
-Se cerchi un’informazione che non si ferma alla superficie e non si adatta alle versioni più comode… sei nel posto giusto.
-</p>
-
-<p class="signature">
-E non è un caso.
-</p>
+<p class="signature">E non è un caso.</p>
 
 </div>
 
 <!-- SOCIAL -->
 <div class="section">
 
-  <h2>Reti</h2>
+<h2>Reti</h2>
 
-  <div class="socials">
-    <a href="https://www.youtube.com/@RaffaelePalermo">▶</a>
-    <a href="https://t.me">✈</a>
-    <a href="https://instagram.com">📸</a>
-    <a href="https://x.com">𝕏</a>
-  </div>
+<div class="socials">
+  <a href="https://youtube.com">▶</a>
+  <a href="https://t.me">✈</a>
+  <a href="https://instagram.com">📸</a>
+  <a href="https://x.com">𝕏</a>
+</div>
 
 </div>
 
 <!-- NEWSLETTER -->
 <div class="section newsletter">
 
-  <h2>Newsletter</h2>
+<h2>Newsletter</h2>
 
-  <p>Ricevi analisi senza filtri e algoritmi.</p>
+<p>Ricevi analisi senza filtri e algoritmi.</p>
 
-  <input type="email" placeholder="La tua email">
-  <button>Iscriviti</button>
+<input type="email" placeholder="La tua email">
+<button>Iscriviti</button>
 
 </div>
 
 <!-- FOOTER -->
 <div class="footer">
-⚠️ Questo è l’unico sito ufficiale del progetto. Non sono affiliato a domini o piattaforme che utilizzano il mio nome senza autorizzazione.
+⚠️ Sito ufficiale del progetto. Nessuna affiliazione con domini terzi non autorizzati.
 </div>
 
 </div>
@@ -134,6 +128,30 @@ const observer = new IntersectionObserver(entries => {
 sections.forEach(section => {
   observer.observe(section);
 });
+
+/* ===== YOUTUBE FEED 3 VIDEO ===== */
+const channelId = "UCXXXXXXXXXXXX"; // tuo ID canale
+
+fetch(`https://www.youtube.com/feeds/videos.xml?channel_id=${channelId}`)
+  .then(res => res.text())
+  .then(str => new window.DOMParser().parseFromString(str, "text/xml"))
+  .then(data => {
+    const entries = data.querySelectorAll("entry");
+
+    let html = "";
+
+    for (let i = 0; i < 3; i++) {
+      const videoId = entries[i].getElementsByTagName("yt:videoId")[0].textContent;
+
+      html += `
+        <div class="video-card">
+          <iframe src="https://www.youtube.com/embed/${videoId}" allowfullscreen></iframe>
+        </div>
+      `;
+    }
+
+    document.getElementById("video-grid").innerHTML = html;
+  });
 </script>
 
 </body>
