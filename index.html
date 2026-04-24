@@ -3,8 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Raffaele Palermo</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
+
 </head>
 
 <body>
@@ -12,63 +16,60 @@
 <header class="header">
   <div class="header-inner">
     <img src="logo.png" class="logo">
-    <div class="brand">RAFFAELE PALERMO</div>
+    <span class="brand">RAFFAELE PALERMO</span>
   </div>
 </header>
 
-<main class="page">
+<main class="container">
 
 <section class="hero reveal">
-  <h1>Analisi indipendente tra media, potere e narrazione</h1>
+  <h1>Non è informazione.<br>È analisi di ciò che non ti viene detto.</h1>
 
   <a href="https://youtube.com/@RaffaelePalermo" target="_blank" class="cta">
-    ▶ Guarda su YouTube
+    ▶ Guarda l’ultima analisi
   </a>
 </section>
 
-<!-- VIDEO PRINCIPALE -->
 <section class="main-video reveal">
   <div id="main-video"></div>
 </section>
 
-<!-- 3 VIDEO -->
 <section class="video-feed reveal">
-  <h2>Ultimi contenuti</h2>
+  <div class="feed-header">
+    <h2>Ultimi contenuti</h2>
+  </div>
   <div id="video-grid"></div>
 </section>
 
-<!-- ABOUT -->
 <section class="about reveal">
 
   <div class="about-grid">
 
     <img src="profile.jpg" class="profile">
 
-    <div>
+    <div class="about-text">
+
       <h2>Chi è Raffaele Palermo</h2>
 
       <p>Mi occupo di analisi critica, giornalismo indipendente e comunicazione, con un focus su ciò che accade dietro le notizie: dinamiche di potere, narrazioni e manipolazione dell’informazione.</p>
 
-      <p>Ho iniziato nel 2020, nel pieno del periodo pandemico, pubblicando online le mie ricerche e analisi. Nel 2021 ho sviluppato un progetto editoriale che è diventato rapidamente un punto di riferimento in Italia per l’informazione indipendente, arrivando a superare le 60.000 visite giornaliere.</p>
+      <p>Ho iniziato nel 2020, pubblicando analisi nel pieno del periodo pandemico. Nel 2021 il progetto è diventato un punto di riferimento in Italia per l’informazione indipendente, superando le 60.000 visite giornaliere.</p>
 
-      <p>Nel 2022 ho scelto di fermarmi per riorganizzare il lavoro, approfondire e costruire una struttura più solida.</p>
+      <p>Oggi il lavoro continua con una community attiva su più piattaforme.</p>
 
-      <p>Oggi il progetto continua attraverso i contenuti online e una community attiva su più piattaforme.</p>
+      <blockquote>
+        Il mio obiettivo non è dirti cosa pensare.  
+        È renderti più difficile da convincere.
+      </blockquote>
 
-      <p>Non sono legato a testate giornalistiche, gruppi editoriali o interessi politici.</p>
+      <div class="signature">E non è un caso.</div>
 
-      <p class="highlight">Qui non trovi narrazioni costruite per piacere, ma analisi pensate per mettere in discussione.</p>
-
-      <p class="final">🎯 Il mio obiettivo non è dirti cosa pensare. È renderti più difficile da convincere.</p>
-
-      <p class="signature">E non è un caso.</p>
     </div>
 
   </div>
 
 </section>
 
-<!-- SOCIAL -->
 <section class="social reveal">
   <a href="https://youtube.com/@RaffaelePalermo">YouTube</a>
   <a href="https://t.me">Telegram</a>
@@ -82,17 +83,13 @@
 </main>
 
 <script>
-/* ===== YOUTUBE FEED VIA WORKER ===== */
 fetch("https://TUO-WORKER.workers.dev")
 .then(res => res.json())
 .then(videos => {
 
-  // VIDEO PRINCIPALE
-  document.getElementById("main-video").innerHTML = `
-    <iframe src="https://www.youtube.com/embed/${videos[0].id}" allowfullscreen></iframe>
-  `;
+  document.getElementById("main-video").innerHTML =
+  `<iframe src="https://www.youtube.com/embed/${videos[0].id}" allowfullscreen></iframe>`;
 
-  // ALTRI 3 VIDEO
   let html = "";
   videos.slice(1,4).forEach(v => {
     html += `
@@ -105,18 +102,15 @@ fetch("https://TUO-WORKER.workers.dev")
   document.getElementById("video-grid").innerHTML = html;
 });
 
-/* SCROLL ANIMATION */
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if(entry.isIntersecting){
-      entry.target.classList.add('visible');
-    }
+/* SCROLL */
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if(e.isIntersecting) e.target.classList.add("visible");
   });
 });
+document.querySelectorAll(".reveal").forEach(el => obs.observe(el));
 
-document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-/* HEADER STICKY */
+/* HEADER */
 window.addEventListener("scroll", () => {
   document.querySelector(".header").classList.toggle("scrolled", window.scrollY > 50);
 });
