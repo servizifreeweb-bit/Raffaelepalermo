@@ -7,54 +7,83 @@
 
   <style>
     body {
-      font-family: Arial, sans-serif;
       margin: 0;
-      background: #0d0d0d;
+      font-family: Arial, sans-serif;
+      background: #0b0b0b;
       color: #ffffff;
       text-align: center;
     }
 
     .container {
-      max-width: 700px;
+      max-width: 800px;
       margin: auto;
       padding: 60px 20px;
     }
 
     h1 {
-      font-size: 40px;
+      font-size: 42px;
       margin-bottom: 10px;
     }
 
-    p {
-      color: #ccc;
+    .subtitle {
+      color: #cccccc;
       font-size: 18px;
+      margin-bottom: 30px;
     }
 
     .btn {
       display: block;
-      margin: 15px auto;
-      padding: 15px;
-      width: 80%;
-      max-width: 300px;
+      margin: 12px auto;
+      padding: 14px;
+      width: 85%;
+      max-width: 320px;
+      border-radius: 8px;
       text-decoration: none;
       font-weight: bold;
-      border-radius: 8px;
     }
 
-    .youtube {
-      background: #ff0000;
-      color: white;
+    .youtube { background: #ff0000; color: white; }
+    .telegram { background: #0088cc; color: white; }
+    .instagram { background: #e1306c; color: white; }
+    .x { background: #1da1f2; color: white; }
+
+    iframe {
+      width: 100%;
+      height: 360px;
+      margin-top: 30px;
+      border-radius: 10px;
     }
 
-    .telegram {
-      background: #0088cc;
-      color: white;
+    .section {
+      margin-top: 50px;
+    }
+
+    .newsletter {
+      margin-top: 20px;
+    }
+
+    input {
+      padding: 12px;
+      width: 70%;
+      max-width: 300px;
+      border: none;
+      border-radius: 6px;
+    }
+
+    button {
+      padding: 12px 16px;
+      border: none;
+      background: white;
+      color: black;
+      border-radius: 6px;
+      cursor: pointer;
+      margin-left: 5px;
     }
 
     .note {
       margin-top: 60px;
-      font-size: 14px;
-      color: #888;
+      font-size: 13px;
+      color: #777;
     }
   </style>
 </head>
@@ -65,29 +94,46 @@
 
     <h1>Raffaele Palermo</h1>
 
-    <p>
-      Giornalismo indipendente e analisi critica della realtà contemporanea.
+    <p class="subtitle">
+      Giornalismo indipendente e analisi critica della realtà contemporanea
     </p>
 
-    <br>
+    <!-- VIDEO YOUTUBE -->
+    <div class="section">
+      <iframe 
+        src="https://www.youtube.com/embed/watch?v=GWmvQkifP54" 
+        frameborder="0" 
+        allowfullscreen>
+      </iframe>
+    </div>
 
-    <a href="https://www.youtube.com/@RaffaelePalermo" class="btn youtube">
-      ▶ Guarda su YouTube
-    </a>
+    <!-- CTA YOUTUBE -->
+    <div class="section">
+      <a href="https://youtube.com" class="btn youtube">▶ Iscriviti su YouTube</a>
+    </div>
 
-    <a href="https://t.me/raffaelepalermonews" class="btn telegram">
-      📡 Entra nella community!
-    </a>
+    <!-- SOCIAL -->
+    <div class="section">
+      <a href="https://t.me" class="btn telegram">📡 Telegram</a>
+      <a href="https://instagram.com" class="btn instagram">📸 Instagram</a>
+      <a href="https://x.com" class="btn x">𝕏 X (Twitter)</a>
+    </div>
 
-    <br>
+    <!-- NEWSLETTER -->
+    <div class="section newsletter">
+      <h3>Newsletter</h3>
+      <p>Ricevi aggiornamenti senza algoritmi</p>
 
-    <p>
-      Informazione, analisi e pensiero libero oltre la narrazione dominante.
-    </p>
+      <form>
+        <input type="email" placeholder="La tua email">
+        <button type="submit">Iscriviti</button>
+      </form>
+    </div>
 
+    <!-- NOTE AUTORITÀ -->
     <div class="note">
-      ⚠️ Questo è l’unico sito ufficiale del progetto.<br>
-      Non sono affiliato a piattaforme o domini che utilizzano il mio nome senza autorizzazione.
+      ⚠️ Sito ufficiale del progetto Raffaele Palermo.<br>
+      Non affiliato a domini o pagine che utilizzano impropriamente il nome.
     </div>
 
   </div>
