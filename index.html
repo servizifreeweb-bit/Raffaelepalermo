@@ -114,5 +114,21 @@ E non è un caso.
 ⚠️ Questo è l’unico sito ufficiale del progetto.
 Non sono affiliato a piattaforme o domini che utilizzano il mio nome senza autorizzazione.</div>
 
+<script>
+const sections = document.querySelectorAll('.section');
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting){
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.15 });
+
+sections.forEach(section => {
+  observer.observe(section);
+});
+</script>
+  
 </body>
 </html>
