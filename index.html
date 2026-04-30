@@ -30,10 +30,12 @@
   </a>
 </section>
 
+<!-- MAIN VIDEO -->
 <section class="main-video reveal">
-  <div id="main-video"></div>
+  <div class="video-wrapper" id="main-video"></div>
 </section>
 
+<!-- FEED -->
 <section class="video-feed reveal">
   <div class="feed-header">
     <h2>Ultimi contenuti</h2>
@@ -41,6 +43,7 @@
   <div id="video-grid"></div>
 </section>
 
+<!-- ABOUT -->
 <section class="about reveal">
 
   <div class="about-grid">
@@ -70,10 +73,21 @@
 
 </section>
 
+<!-- SOCIAL -->
 <section class="social reveal">
-  <a href="https://youtube.com/@RaffaelePalermo">YouTube</a>
-  <a href="https://t.me">Telegram</a>
-  <a href="https://instagram.com">Instagram</a>
+
+  <a href="https://youtube.com/@RaffaelePalermo">
+    ▶ YouTube
+  </a>
+
+  <a href="https://t.me">
+    ✈ Telegram
+  </a>
+
+  <a href="https://instagram.com">
+    ◉ Instagram
+  </a>
+
 </section>
 
 <footer>
@@ -102,7 +116,7 @@ fetch("https://TUO-WORKER.workers.dev")
   document.getElementById("video-grid").innerHTML = html;
 });
 
-/* SCROLL */
+/* scroll */
 const obs = new IntersectionObserver(entries => {
   entries.forEach(e => {
     if(e.isIntersecting) e.target.classList.add("visible");
@@ -110,7 +124,7 @@ const obs = new IntersectionObserver(entries => {
 });
 document.querySelectorAll(".reveal").forEach(el => obs.observe(el));
 
-/* HEADER */
+/* header */
 window.addEventListener("scroll", () => {
   document.querySelector(".header").classList.toggle("scrolled", window.scrollY > 50);
 });
