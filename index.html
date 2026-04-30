@@ -27,23 +27,14 @@
       <div class="subbrand">Divulgatore indipendente e analisi critica</div>
     </div>
 
-    <!-- MENU BUTTON -->
     <button class="menu-btn" onclick="toggleMenu()">☰</button>
 
-    <!-- MENU -->
     <div class="menu-dropdown" id="menu">
 
       <a href="#top" onclick="closeMenu()">Home</a>
-
       <a href="#video-grid" onclick="closeMenu()">Ultimi video</a>
-
-      <a href="https://tr.ee/KDRI5BlzEX" target="_blank" onclick="closeMenu()">
-        Contattami
-      </a>
-
-      <a href="https://t.me" target="_blank" onclick="closeMenu()">
-        Telegram
-      </a>
+      <a href="https://tr.ee/KDRI5BlzEX" target="_blank" onclick="closeMenu()">Contattami</a>
+      <a href="https://t.me" target="_blank" onclick="closeMenu()">Telegram</a>
 
     </div>
 
@@ -98,11 +89,11 @@
       <h2>Chi è Raffaele Palermo</h2>
 
       <p>
-        Mi occupo di analisi critica, giornalismo indipendente e comunicazione, con focus sulle dinamiche di potere e narrazione mediatica.
+        Mi occupo di analisi critica, giornalismo indipendente e comunicazione.
       </p>
 
       <p>
-        Ho iniziato nel 2020 e nel 2021 il progetto è diventato un punto di riferimento in Italia per l’informazione indipendente.
+        Dal 2020 analizzo dinamiche di potere e narrazione mediatica.
       </p>
 
       <blockquote>
@@ -143,7 +134,7 @@
 </section>
 
 <footer class="footer">
-⚠️ Sito ufficiale del progetto indipendente di Raffaele Palermo.
+⚠️ Sito ufficiale del progetto indipendente.
 </footer>
 
 </main>
@@ -190,18 +181,14 @@ const obs = new IntersectionObserver(entries => {
     if(e.isIntersecting) e.target.classList.add("visible");
   });
 });
-
 document.querySelectorAll(".reveal").forEach(el => obs.observe(el));
 
-/* HEADER SCROLL */
+/* HEADER */
 window.addEventListener("scroll", () => {
   document.querySelector(".header").classList.toggle("scrolled", window.scrollY > 50);
 });
 
-/* =========================
-   BLOOMBERG MENU SYSTEM
-========================= */
-
+/* MENU BLOOMBERG FIX */
 function toggleMenu() {
   document.getElementById("menu").classList.toggle("active");
   document.getElementById("menuOverlay").classList.toggle("active");
