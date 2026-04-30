@@ -22,6 +22,7 @@
 
 <main class="container">
 
+<!-- HERO -->
 <section class="hero reveal">
   <h1>Non è informazione.<br>È analisi di ciò che non ti viene detto.</h1>
 
@@ -31,16 +32,9 @@
 </section>
 
 <!-- MAIN VIDEO -->
-setTimeout(() => {
-  document.getElementById("main-video").innerHTML = `
-    <iframe 
-      src="https://www.youtube.com/embed/VS573-EnX3s?autoplay=1&mute=1&playsinline=1&rel=0"
-      allow="autoplay; encrypted-media"
-      allowfullscreen
-      style="width:100%; height:520px; border-radius:18px;">
-    </iframe>
-  `;
-}, 300);
+<section class="main-video reveal">
+  <div id="main-video"></div>
+</section>
 
 <!-- FEED -->
 <section class="video-feed reveal">
@@ -98,37 +92,45 @@ setTimeout(() => {
 <script>
 
 /* =========================
-   MAIN VIDEO (SAFE VERSION)
+   VIDEO LOGIC (STABILE)
 ========================= */
 
 const fallbackVideo = "VS573-EnX3s";
+
+setTimeout(() => {
+  const main = document.getElementById("main-video");
+
+  main.innerHTML = `
+    <iframe 
+      src="https://www.youtube.com/embed/${fallbackVideo}?autoplay=1&mute=1&playsinline=1&rel=0"
+      allow="autoplay; encrypted-media"
+      allowfullscreen
+      style="width:100%; height:520px; border-radius:18px;">
+    </iframe>
+  `;
+}, 300);
+
+/* =========================
+   OPTIONAL FEED (WORKER)
+========================= */
 
 fetch("https://TUO-WORKER.workers.dev")
 .then(res => res.json())
 .then(videos => {
 
-  const main = document.getElementById("main-video");
   const grid = document.getElementById("video-grid");
 
-  if (!videos || !videos.length) {
-    // fallback sicuro
-    main.innerHTML = `
-      <iframe src="https://www.youtube.com/embed/${fallbackVideo}" allowfullscreen></iframe>
-    `;
-    return;
-  }
+  if (!videos || !videos.length) return;
 
-  // MAIN VIDEO
-  main.innerHTML = `
-    <iframe src="https://www.youtube.com/embed/${videos[0].id}" allowfullscreen></iframe>
-  `;
-
-  // FEED
   let html = "";
+
   videos.slice(1,4).forEach(v => {
     html += `
       <div class="video-card">
-        <iframe src="https://www.youtube.com/embed/${v.id}" allowfullscreen></iframe>
+        <iframe 
+          src="https://www.youtube.com/embed/${v.id}" 
+          allowfullscreen>
+        </iframe>
       </div>
     `;
   });
@@ -136,8 +138,7 @@ fetch("https://TUO-WORKER.workers.dev")
   grid.innerHTML = html;
 })
 .catch(() => {
-  document.getElementById("main-video").innerHTML =
-    `<iframe src="https://www.youtube.com/embed/${fallbackVideo}" allowfullscreen></iframe>`;
+  console.log("Worker non attivo");
 });
 
 /* =========================
