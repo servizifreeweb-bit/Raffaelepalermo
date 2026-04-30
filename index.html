@@ -17,7 +17,7 @@
   <div class="header-inner">
     <img src="logo.png" class="logo">
 
-    <div>
+    <div class="header-text">
       <div class="brand">RAFFAELE PALERMO</div>
       <div class="subbrand">Divulgatore Indipendente e analisi critica</div>
     </div>
@@ -26,11 +26,10 @@
 
 <main class="container">
 
-<!-- BREAKING NEWS SYSTEM -->
-<section class="breaking reveal">
-  <div class="breaking-tag">BREAKING ANALYSIS</div>
+<!-- HERO CENTRATO -->
+<section class="hero reveal center">
 
-  <h1>Non è informazione: è ciò che viene filtrato prima di arrivare a te</h1>
+  <h1>Non è informazione.<br>È ciò che viene filtrato prima di arrivare a te</h1>
 
   <p class="lead">
     Analisi indipendente su media, potere e narrazione contemporanea.
@@ -39,19 +38,18 @@
   <a class="cta" href="https://youtube.com/@RaffaelePalermo" target="_blank">
     ▶ Guarda l’ultima analisi
   </a>
+
 </section>
 
-<!-- MAIN VIDEO (CENTRATO FIXATO) -->
+<!-- MAIN VIDEO -->
 <section class="main-video reveal">
   <div class="video-center" id="main-video"></div>
 </section>
 
 <!-- LATEST CONTENT -->
-<section class="video-feed reveal">
+<section class="video-feed reveal center">
 
-  <div class="feed-header">
-    <h2>Ultimi Video Pubblicati</h2>
-  </div>
+  <h2 class="section-title">Ultimi Video Pubblicati</h2>
 
   <div id="video-grid" class="grid"></div>
 
@@ -88,27 +86,37 @@
 
 </section>
 
-<!-- SOCIAL ICONS -->
-<section class="social reveal">
+<!-- SOCIAL (CON LABELS + TIKTOK) -->
+<section class="social reveal center">
 
-  <a href="https://youtube.com/@RaffaelePalermo" target="_blank">▶</a>
-  <a href="https://t.me" target="_blank">✈</a>
-  <a href="https://instagram.com" target="_blank">◉</a>
+  <a href="https://youtube.com/@RaffaelePalermo" target="_blank">
+    ▶ YOUTUBE
+  </a>
+
+  <a href="https://t.me" target="_blank">
+    ✈ TELEGRAM
+  </a>
+
+  <a href="https://instagram.com" target="_blank">
+    ◉ INSTAGRAM
+  </a>
+
+  <a href="https://tiktok.com" target="_blank">
+    ♪ TIKTOK
+  </a>
 
 </section>
 
 <footer class="footer">
-⚠️ Unico Sito ufficiale del progetto indipendente di Raffaele Palermo. Non sono affiliato a piattaforme o domini che utilizzano il mio nome senza autorizzazione.
+⚠️ Sito ufficiale del progetto indipendente di Raffaele Palermo.  
+Non sono affiliato a piattaforme o domini che utilizzano il mio nome senza autorizzazione.
 </footer>
 
 </main>
 
 <script>
 
-/* =========================
-   MAIN VIDEO CENTRATO
-========================= */
-
+/* MAIN VIDEO */
 const fallback = "VS573-EnX3s";
 
 setTimeout(() => {
@@ -121,10 +129,7 @@ setTimeout(() => {
   `;
 }, 300);
 
-/* =========================
-   FEED 3 VIDEO (WORKER)
-========================= */
-
+/* FEED */
 fetch("https://TUO-WORKER.workers.dev")
 .then(r => r.json())
 .then(videos => {
@@ -145,10 +150,7 @@ fetch("https://TUO-WORKER.workers.dev")
   grid.innerHTML = html;
 });
 
-/* =========================
-   ANIMAZIONI APPLE NEWS STYLE
-========================= */
-
+/* ANIMAZIONI */
 const obs = new IntersectionObserver(entries => {
   entries.forEach(e => {
     if(e.isIntersecting){
