@@ -8,13 +8,16 @@
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
-
 </head>
 
 <body>
 
-<!-- HEADER + MENU EDITORIALE -->
+<!-- OVERLAY MENU -->
+<div class="menu-overlay" id="menuOverlay"></div>
+
+<!-- HEADER -->
 <header class="header">
+
   <div class="header-inner center-header">
 
     <img src="logo.png" class="logo">
@@ -24,16 +27,23 @@
       <div class="subbrand">Divulgatore indipendente e analisi critica</div>
     </div>
 
+    <!-- MENU BUTTON -->
+    <button class="menu-btn" onclick="toggleMenu()">☰</button>
+
     <!-- MENU -->
-    <div class="menu-wrapper">
+    <div class="menu-dropdown" id="menu">
 
-      <button class="menu-btn" onclick="toggleMenu()">☰</button>
+      <a href="#top" onclick="closeMenu()">Home</a>
 
-      <div class="menu-dropdown" id="menu">
-        <a href="#top">Home</a>
-        <a href="#video-grid">Ultimi video</a>
-        <a href="mailto:tuamail@example.com">Contattami</a>
-      </div>
+      <a href="#video-grid" onclick="closeMenu()">Ultimi video</a>
+
+      <a href="https://tr.ee/KDRI5BlzEX" target="_blank" onclick="closeMenu()">
+        Contattami
+      </a>
+
+      <a href="https://t.me" target="_blank" onclick="closeMenu()">
+        Telegram
+      </a>
 
     </div>
 
@@ -133,8 +143,7 @@
 </section>
 
 <footer class="footer">
-⚠️ Sito ufficiale del progetto indipendente di Raffaele Palermo.  
-Non sono affiliato a piattaforme o domini che utilizzano il mio nome senza autorizzazione.
+⚠️ Sito ufficiale del progetto indipendente di Raffaele Palermo.
 </footer>
 
 </main>
@@ -178,9 +187,7 @@ fetch("https://TUO-WORKER.workers.dev")
 /* ANIMAZIONI */
 const obs = new IntersectionObserver(entries => {
   entries.forEach(e => {
-    if(e.isIntersecting){
-      e.target.classList.add("visible");
-    }
+    if(e.isIntersecting) e.target.classList.add("visible");
   });
 });
 
@@ -191,19 +198,21 @@ window.addEventListener("scroll", () => {
   document.querySelector(".header").classList.toggle("scrolled", window.scrollY > 50);
 });
 
-/* MENU EDITORIALE */
+/* =========================
+   BLOOMBERG MENU SYSTEM
+========================= */
+
 function toggleMenu() {
   document.getElementById("menu").classList.toggle("active");
+  document.getElementById("menuOverlay").classList.toggle("active");
 }
 
-document.addEventListener("click", function(e) {
-  const menu = document.getElementById("menu");
-  const btn = document.querySelector(".menu-btn");
+function closeMenu() {
+  document.getElementById("menu").classList.remove("active");
+  document.getElementById("menuOverlay").classList.remove("active");
+}
 
-  if (!btn.contains(e.target) && !menu.contains(e.target)) {
-    menu.classList.remove("active");
-  }
-});
+document.getElementById("menuOverlay").addEventListener("click", closeMenu);
 
 </script>
 
