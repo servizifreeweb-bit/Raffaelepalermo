@@ -32,7 +32,7 @@
 
 <!-- MAIN VIDEO -->
 <section class="main-video reveal">
-  <div class="video-wrapper" id="https://youtu.be/VS573-EnX3s?si=1Mi4bBbAkKe98pSf"></div>
+  <div class="video-wrapper" id="main-video"></div>
 </section>
 
 <!-- FEED -->
@@ -76,17 +76,9 @@
 <!-- SOCIAL -->
 <section class="social reveal">
 
-  <a href="https://youtube.com/@RaffaelePalermo">
-    ▶ YouTube
-  </a>
-
-  <a href="https://t.me">
-    ✈ Telegram
-  </a>
-
-  <a href="https://instagram.com">
-    ◉ Instagram
-  </a>
+  <a href="https://youtube.com/@RaffaelePalermo">▶ YouTube</a>
+  <a href="https://t.me">✈ Telegram</a>
+  <a href="https://instagram.com">◉ Instagram</a>
 
 </section>
 
@@ -97,13 +89,34 @@
 </main>
 
 <script>
+
+/* =========================
+   MAIN VIDEO (SAFE VERSION)
+========================= */
+
+const fallbackVideo = "VS573-EnX3s";
+
 fetch("https://TUO-WORKER.workers.dev")
 .then(res => res.json())
 .then(videos => {
 
-  document.getElementById("main-video").innerHTML =
-  `<iframe src="https://www.youtube.com/embed/${videos[0].id}" allowfullscreen></iframe>`;
+  const main = document.getElementById("main-video");
+  const grid = document.getElementById("video-grid");
 
+  if (!videos || !videos.length) {
+    // fallback sicuro
+    main.innerHTML = `
+      <iframe src="https://www.youtube.com/embed/${fallbackVideo}" allowfullscreen></iframe>
+    `;
+    return;
+  }
+
+  // MAIN VIDEO
+  main.innerHTML = `
+    <iframe src="https://www.youtube.com/embed/${videos[0].id}" allowfullscreen></iframe>
+  `;
+
+  // FEED
   let html = "";
   videos.slice(1,4).forEach(v => {
     html += `
@@ -113,10 +126,16 @@ fetch("https://TUO-WORKER.workers.dev")
     `;
   });
 
-  document.getElementById("video-grid").innerHTML = html;
+  grid.innerHTML = html;
+})
+.catch(() => {
+  document.getElementById("main-video").innerHTML =
+    `<iframe src="https://www.youtube.com/embed/${fallbackVideo}" allowfullscreen></iframe>`;
 });
 
-/* scroll */
+/* =========================
+   SCROLL ANIMATION
+========================= */
 const obs = new IntersectionObserver(entries => {
   entries.forEach(e => {
     if(e.isIntersecting) e.target.classList.add("visible");
@@ -124,10 +143,13 @@ const obs = new IntersectionObserver(entries => {
 });
 document.querySelectorAll(".reveal").forEach(el => obs.observe(el));
 
-/* header */
+/* =========================
+   HEADER EFFECT
+========================= */
 window.addEventListener("scroll", () => {
   document.querySelector(".header").classList.toggle("scrolled", window.scrollY > 50);
 });
+
 </script>
 
 </body>
