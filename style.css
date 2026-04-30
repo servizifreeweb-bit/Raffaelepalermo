@@ -6,7 +6,7 @@ body {
 }
 
 /* =========================
-   HEADER (CENTRATO VERO FIX)
+   HEADER
 ========================= */
 
 .header {
@@ -29,10 +29,11 @@ body {
   padding: 14px 20px;
 
   display: flex;
-  justify-content: center; /* FIX CENTRATURA */
+  justify-content: center;
   align-items: center;
   gap: 12px;
   text-align: center;
+  position: relative;
 }
 
 .logo {
@@ -42,13 +43,82 @@ body {
 .brand {
   font-weight: 800;
   letter-spacing: 1px;
-  text-align: center;
 }
 
 .subbrand {
   font-size: 12px;
   color: #94a3b8;
-  text-align: center;
+}
+
+/* =========================
+   MENU EDITORIALE
+========================= */
+
+.menu-wrapper {
+  position: absolute;
+  right: 20px;
+}
+
+.menu-btn {
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.15);
+  color: #e5e7eb;
+  font-size: 18px;
+  padding: 6px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.menu-btn:hover {
+  background: rgba(37,99,235,0.15);
+  border-color: #2563eb;
+}
+
+.menu-dropdown {
+  position: absolute;
+  right: 0;
+  top: 45px;
+
+  background: rgba(2,6,23,0.95);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 12px;
+
+  min-width: 180px;
+
+  display: flex;
+  flex-direction: column;
+
+  opacity: 0;
+  transform: translateY(-10px);
+  pointer-events: none;
+
+  transition: 0.25s ease;
+  backdrop-filter: blur(12px);
+}
+
+.menu-dropdown.active {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.menu-dropdown a {
+  padding: 12px 14px;
+  text-decoration: none;
+  color: #cbd5e1;
+  font-size: 14px;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  transition: 0.2s;
+}
+
+.menu-dropdown a:last-child {
+  border-bottom: none;
+}
+
+.menu-dropdown a:hover {
+  background: rgba(37,99,235,0.2);
+  color: white;
 }
 
 /* =========================
@@ -62,18 +132,18 @@ body {
 }
 
 /* =========================
-   HERO / BREAKING (CENTRATO FIX)
+   HERO
 ========================= */
 
-.hero, .breaking {
-  padding: 60px 0 30px; /* ridotto spazio sopra */
-  text-align: center;   /* FIX */
+.hero {
+  padding: 60px 0 30px;
+  text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.hero h1, .breaking h1 {
+.hero-title {
   font-size: 42px;
   font-weight: 800;
   line-height: 1.1;
@@ -86,7 +156,13 @@ body {
   margin-top: 10px;
 }
 
-/* CTA CENTRATA VERA */
+/* CTA */
+.cta-wrapper {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
 .cta {
   display: inline-block;
   margin-top: 25px;
@@ -104,7 +180,7 @@ body {
 }
 
 /* =========================
-   SECTION TITLES
+   TITOLI SEZIONE
 ========================= */
 
 .section-title {
@@ -116,7 +192,7 @@ body {
 }
 
 /* =========================
-   MAIN VIDEO
+   VIDEO MAIN
 ========================= */
 
 .video-center {
@@ -133,7 +209,7 @@ body {
 }
 
 /* =========================
-   FEED VIDEO
+   FEED
 ========================= */
 
 .grid {
@@ -142,14 +218,14 @@ body {
   gap: 18px;
 }
 
-.card {
-  transition: transform 0.3s ease;
-}
-
 .card iframe {
   width: 100%;
   height: 200px;
   border-radius: 14px;
+}
+
+.card {
+  transition: transform 0.3s ease;
 }
 
 .card:hover {
@@ -186,12 +262,12 @@ blockquote {
 }
 
 /* =========================
-   SOCIAL (FIX VERO: ICONA + TESTO)
+   SOCIAL VERTICALI
 ========================= */
 
 .social {
   display: flex;
-  flex-direction: column;   /* FIX PRINCIPALE */
+  flex-direction: column;
   align-items: center;
   gap: 14px;
   margin-top: 60px;
@@ -247,12 +323,12 @@ blockquote {
 }
 
 /* =========================
-   RESPONSIVE FIX
+   RESPONSIVE
 ========================= */
 
 @media (max-width: 768px) {
 
-  .hero h1, .breaking h1 {
+  .hero-title {
     font-size: 28px;
   }
 
@@ -262,6 +338,10 @@ blockquote {
 
   .video-center iframe {
     height: 260px;
+  }
+
+  .menu-wrapper {
+    right: 10px;
   }
 
   .social a {
