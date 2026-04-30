@@ -12,13 +12,13 @@
 
 <body>
 
-<!-- OVERLAY MENU -->
+<!-- OVERLAY -->
 <div class="menu-overlay" id="menuOverlay"></div>
 
 <!-- HEADER -->
 <header class="header">
 
-  <div class="header-inner center-header">
+  <div class="header-inner">
 
     <img src="logo.png" class="logo">
 
@@ -27,14 +27,14 @@
       <div class="subbrand">Divulgatore indipendente e analisi critica</div>
     </div>
 
-    <button class="menu-btn" onclick="toggleMenu()">☰</button>
+    <button class="menu-btn" id="menuBtn">☰</button>
 
     <div class="menu-dropdown" id="menu">
 
-      <a href="#top" onclick="closeMenu()">Home</a>
-      <a href="#video-grid" onclick="closeMenu()">Ultimi video</a>
-      <a href="https://tr.ee/KDRI5BlzEX" target="_blank" onclick="closeMenu()">Contattami</a>
-      <a href="https://t.me" target="_blank" onclick="closeMenu()">Telegram</a>
+      <a href="#top">Home</a>
+      <a href="#video-grid">Ultimi video</a>
+      <a href="https://tr.ee/KDRI5BlzEX" target="_blank">Contattami</a>
+      <a href="https://t.me" target="_blank">Telegram</a>
 
     </div>
 
@@ -43,17 +43,14 @@
 
 <main class="container">
 
-<!-- HERO -->
-<section class="hero reveal center" id="top">
+<section class="hero" id="top">
 
   <h1 class="hero-title">
     Non è informazione.<br>
     È ciò che viene filtrato prima di arrivare a te
   </h1>
 
-  <p class="lead">
-    Analisi indipendente su media, potere e narrazione contemporanea.
-  </p>
+  <p class="lead">Analisi indipendente su media, potere e narrazione contemporanea.</p>
 
   <div class="cta-wrapper">
     <a class="cta" href="https://youtube.com/@RaffaelePalermo" target="_blank">
@@ -63,143 +60,86 @@
 
 </section>
 
-<!-- MAIN VIDEO -->
-<section class="main-video reveal">
+<section class="main-video">
   <div class="video-center" id="main-video"></div>
 </section>
 
-<!-- LATEST CONTENT -->
-<section class="video-feed reveal center">
-
+<section class="video-feed">
   <h2 class="section-title">Ultimi Video Pubblicati</h2>
-
   <div id="video-grid" class="grid"></div>
-
 </section>
 
-<!-- ABOUT -->
-<section class="about reveal">
+<section class="social">
 
-  <div class="about-grid">
-
-    <img src="profile.jpg" class="profile">
-
-    <div class="about-text">
-
-      <h2>Chi è Raffaele Palermo</h2>
-
-      <p>
-        Mi occupo di analisi critica, giornalismo indipendente e comunicazione.
-      </p>
-
-      <p>
-        Dal 2020 analizzo dinamiche di potere e narrazione mediatica.
-      </p>
-
-      <blockquote>
-        Il mio obiettivo non è dirti cosa pensare. È renderti più difficile da convincere.
-      </blockquote>
-
-      <div class="signature">E non è un caso.</div>
-
-    </div>
-
-  </div>
-
-</section>
-
-<!-- SOCIAL -->
-<section class="social reveal social-vertical">
-
-  <a href="https://youtube.com/@RaffaelePalermo" target="_blank">
-    <span class="icon">▶</span>
-    <span class="label">YouTube</span>
+  <a href="https://youtube.com/@RaffaelePalermo">
+    <span>▶</span> YouTube
   </a>
 
-  <a href="https://t.me" target="_blank">
-    <span class="icon">✈</span>
-    <span class="label">Telegram</span>
+  <a href="https://t.me">
+    <span>✈</span> Telegram
   </a>
 
-  <a href="https://instagram.com" target="_blank">
-    <span class="icon">◉</span>
-    <span class="label">Instagram</span>
+  <a href="https://instagram.com">
+    <span>◉</span> Instagram
   </a>
 
-  <a href="https://tiktok.com" target="_blank">
-    <span class="icon">♪</span>
-    <span class="label">TikTok</span>
+  <a href="https://tiktok.com">
+    <span>♪</span> TikTok
   </a>
 
 </section>
 
 <footer class="footer">
-⚠️ Sito ufficiale del progetto indipendente.
+Sito ufficiale progetto indipendente.
 </footer>
 
 </main>
 
 <script>
 
-/* MAIN VIDEO */
+/* VIDEO */
 const fallback = "VS573-EnX3s";
 
 setTimeout(() => {
   document.getElementById("main-video").innerHTML = `
     <iframe 
-      src="https://www.youtube.com/embed/${fallback}?autoplay=1&mute=1&playsinline=1&rel=0"
+      src="https://www.youtube.com/embed/${fallback}?autoplay=1&mute=1&rel=0"
       allow="autoplay; encrypted-media"
       allowfullscreen>
     </iframe>
   `;
 }, 300);
 
-/* FEED */
-fetch("https://TUO-WORKER.workers.dev")
-.then(r => r.json())
-.then(videos => {
+/* MENU FIX DEFINITIVO */
+const menu = document.getElementById("menu");
+const overlay = document.getElementById("menuOverlay");
+const btn = document.getElementById("menuBtn");
 
-  const grid = document.getElementById("video-grid");
-  if (!videos || !videos.length) return;
-
-  let html = "";
-
-  videos.slice(1,4).forEach(v => {
-    html += `
-      <div class="card">
-        <iframe src="https://www.youtube.com/embed/${v.id}" allowfullscreen></iframe>
-      </div>
-    `;
-  });
-
-  grid.innerHTML = html;
-});
-
-/* ANIMAZIONI */
-const obs = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if(e.isIntersecting) e.target.classList.add("visible");
-  });
-});
-document.querySelectorAll(".reveal").forEach(el => obs.observe(el));
-
-/* HEADER */
-window.addEventListener("scroll", () => {
-  document.querySelector(".header").classList.toggle("scrolled", window.scrollY > 50);
-});
-
-/* MENU BLOOMBERG FIX */
-function toggleMenu() {
-  document.getElementById("menu").classList.toggle("active");
-  document.getElementById("menuOverlay").classList.toggle("active");
+function openMenu(){
+  menu.classList.add("active");
+  overlay.classList.add("active");
 }
 
-function closeMenu() {
-  document.getElementById("menu").classList.remove("active");
-  document.getElementById("menuOverlay").classList.remove("active");
+function closeMenu(){
+  menu.classList.remove("active");
+  overlay.classList.remove("active");
 }
 
-document.getElementById("menuOverlay").addEventListener("click", closeMenu);
+btn.addEventListener("click", (e) => {
+  e.stopPropagation();
+  if(menu.classList.contains("active")){
+    closeMenu();
+  } else {
+    openMenu();
+  }
+});
+
+overlay.addEventListener("click", closeMenu);
+
+/* chiusura automatica su click link */
+document.querySelectorAll(".menu-dropdown a").forEach(a => {
+  a.addEventListener("click", closeMenu);
+});
 
 </script>
 
