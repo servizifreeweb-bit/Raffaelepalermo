@@ -5,78 +5,55 @@ body {
   color: #e5e7eb;
 }
 
-/* =========================
-   HEADER
-========================= */
-
+/* HEADER */
 .header {
   position: sticky;
   top: 0;
   background: rgba(2,6,23,0.6);
   backdrop-filter: blur(14px);
-  border-bottom: 1px solid rgba(255,255,255,0.05);
-  z-index: 100;
-}
-
-.header.scrolled {
-  background: rgba(2,6,23,0.9);
+  z-index: 1000;
 }
 
 .header-inner {
   max-width: 1100px;
   margin: auto;
   padding: 14px 20px;
-
   display: flex;
-  justify-content: center;
   align-items: center;
-  gap: 12px;
-
+  justify-content: center;
   position: relative;
-  text-align: center;
+  gap: 12px;
 }
 
 .logo { width: 42px; }
 
-.brand {
-  font-weight: 800;
-  letter-spacing: 1px;
-}
+.brand { font-weight: 800; }
 
-.subbrand {
-  font-size: 12px;
-  color: #94a3b8;
-}
+.subbrand { font-size: 12px; color: #94a3b8; }
 
-/* =========================
-   MENU BLOOMBERG STYLE FIX
-========================= */
-
+/* BUTTON */
 .menu-btn {
   position: absolute;
   right: 20px;
-
-  background: rgba(255,255,255,0.06);
+  background: rgba(255,255,255,0.08);
   border: 1px solid rgba(255,255,255,0.15);
-  color: #fff;
-  font-size: 18px;
+  color: white;
   padding: 8px 12px;
   border-radius: 10px;
   cursor: pointer;
-  backdrop-filter: blur(10px);
+  z-index: 1100;
 }
 
 /* OVERLAY */
 .menu-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.55);
+  background: rgba(0,0,0,0.6);
   backdrop-filter: blur(6px);
-
   opacity: 0;
   pointer-events: none;
   transition: 0.25s;
-  z-index: 200;
+  z-index: 1500;
 }
 
 .menu-overlay.active {
@@ -84,29 +61,25 @@ body {
   pointer-events: auto;
 }
 
-/* PANEL */
+/* MENU PANEL */
 .menu-dropdown {
   position: fixed;
   top: 0;
   right: 0;
-
   width: 280px;
   height: 100vh;
 
-  background: rgba(2,6,23,0.92);
-  backdrop-filter: blur(18px);
-
-  border-left: 1px solid rgba(255,255,255,0.08);
+  background: rgba(2,6,23,0.95);
+  backdrop-filter: blur(20px);
 
   transform: translateX(100%);
-  transition: 0.35s cubic-bezier(0.4,0,0.2,1);
-
+  transition: 0.35s ease;
   display: flex;
   flex-direction: column;
   padding: 80px 20px;
-  gap: 10px;
+  gap: 12px;
 
-  z-index: 300;
+  z-index: 1600;
 }
 
 .menu-dropdown.active {
@@ -118,61 +91,23 @@ body {
   color: #cbd5e1;
   text-decoration: none;
   border-radius: 10px;
-  border: 1px solid transparent;
-  transition: 0.2s;
 }
 
 .menu-dropdown a:hover {
-  background: rgba(37,99,235,0.15);
-  border-color: #2563eb;
-  color: #fff;
-  transform: translateX(4px);
+  background: rgba(37,99,235,0.2);
+  color: white;
 }
 
-/* =========================
-   HERO
-========================= */
+/* HERO */
+.container { max-width: 1100px; margin: auto; padding: 20px; }
 
-.container {
-  max-width: 1100px;
-  margin: auto;
-  padding: 20px;
-}
+.hero { text-align: center; padding: 60px 0; }
 
-.hero {
-  text-align: center;
-  padding: 50px 0 30px;
-}
+.hero-title { font-size: 38px; font-weight: 800; }
 
-.hero-title {
-  font-size: 38px;
-  font-weight: 800;
-  line-height: 1.1;
-}
+.lead { color: #94a3b8; }
 
-.lead {
-  color: #94a3b8;
-}
-
-/* CTA */
-.cta-wrapper {
-  display: flex;
-  justify-content: center;
-}
-
-.cta {
-  margin-top: 20px;
-  padding: 14px 26px;
-  background: #2563eb;
-  color: #fff;
-  border-radius: 10px;
-  text-decoration: none;
-}
-
-/* =========================
-   VIDEO
-========================= */
-
+/* VIDEO */
 .video-center {
   display: flex;
   justify-content: center;
@@ -185,26 +120,7 @@ body {
   border-radius: 18px;
 }
 
-/* =========================
-   GRID
-========================= */
-
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 18px;
-}
-
-.card iframe {
-  width: 100%;
-  height: 200px;
-  border-radius: 14px;
-}
-
-/* =========================
-   SOCIAL
-========================= */
-
+/* SOCIAL */
 .social {
   display: flex;
   flex-direction: column;
@@ -214,47 +130,19 @@ body {
 }
 
 .social a {
-  display: flex;
-  gap: 12px;
   width: 220px;
   padding: 10px 16px;
   border: 1px solid #334155;
   border-radius: 12px;
   color: #93c5fd;
   text-decoration: none;
+  display: flex;
+  gap: 10px;
 }
 
-/* =========================
-   FOOTER
-========================= */
-
+/* FOOTER */
 .footer {
   text-align: center;
-  font-size: 12px;
-  color: #64748b;
   margin: 80px 0;
-}
-
-/* =========================
-   ANIMAZIONI
-========================= */
-
-.reveal {
-  opacity: 0;
-  transform: translateY(35px);
-  transition: 0.8s;
-}
-
-.reveal.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* =========================
-   RESPONSIVE
-========================= */
-
-@media (max-width: 768px) {
-  .hero-title { font-size: 26px; }
-  .video-center iframe { height: 260px; }
+  color: #64748b;
 }
