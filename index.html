@@ -16,45 +16,42 @@
 <header class="header">
   <div class="header-inner">
     <img src="logo.png" class="logo">
+
     <div>
       <div class="brand">RAFFAELE PALERMO</div>
-      <div class="subbrand">Independent Journalism & Analysis</div>
+      <div class="subbrand">Independent Journalism & Critical Analysis</div>
     </div>
   </div>
 </header>
 
 <main class="container">
 
-<!-- HERO -->
-<section class="hero reveal">
+<!-- BREAKING NEWS SYSTEM -->
+<section class="breaking reveal">
+  <div class="breaking-tag">BREAKING ANALYSIS</div>
 
-  <div class="kicker">LATEST ANALYSIS</div>
-
-  <h1>Non è informazione.<br>È ciò che non ti viene raccontato.</h1>
+  <h1>Non è informazione: è ciò che viene filtrato prima di arrivare a te</h1>
 
   <p class="lead">
     Analisi indipendente su media, potere e narrazione contemporanea.
   </p>
 
-  <a href="https://youtube.com/@RaffaelePalermo" target="_blank" class="cta">
+  <a class="cta" href="https://youtube.com/@RaffaelePalermo" target="_blank">
     ▶ Guarda l’ultima analisi
   </a>
-
 </section>
 
-<!-- FEATURE VIDEO -->
-<section class="feature reveal">
-
-  <div class="section-title">Top Story</div>
-
-  <div id="main-video" class="video-feature"></div>
-
+<!-- MAIN VIDEO (CENTRATO FIXATO) -->
+<section class="main-video reveal">
+  <div class="video-center" id="main-video"></div>
 </section>
 
-<!-- LATEST VIDEOS -->
-<section class="latest reveal">
+<!-- LATEST CONTENT -->
+<section class="video-feed reveal">
 
-  <div class="section-title">Latest Content</div>
+  <div class="feed-header">
+    <h2>Latest Content</h2>
+  </div>
 
   <div id="video-grid" class="grid"></div>
 
@@ -69,18 +66,14 @@
 
     <div class="about-text">
 
-      <div class="section-title">About</div>
+      <h2>Chi è Raffaele Palermo</h2>
 
       <p>
-        Mi occupo di analisi critica, giornalismo indipendente e comunicazione, con un focus su ciò che accade dietro le notizie: dinamiche di potere, narrazioni e manipolazione dell’informazione.
+        Mi occupo di analisi critica, giornalismo indipendente e comunicazione, con focus sulle dinamiche di potere e narrazione mediatica.
       </p>
 
       <p>
-        Ho iniziato nel 2020, pubblicando analisi nel pieno del periodo pandemico. Nel 2021 il progetto è diventato un punto di riferimento in Italia per l’informazione indipendente.
-      </p>
-
-      <p>
-        Oggi il lavoro continua con una community attiva su più piattaforme.
+        Ho iniziato nel 2020 e nel 2021 il progetto è diventato un punto di riferimento in Italia per l’informazione indipendente.
       </p>
 
       <blockquote>
@@ -95,11 +88,13 @@
 
 </section>
 
-<!-- SOCIAL -->
+<!-- SOCIAL ICONS -->
 <section class="social reveal">
-  <a href="https://youtube.com/@RaffaelePalermo">YouTube</a>
-  <a href="https://t.me">Telegram</a>
-  <a href="https://instagram.com">Instagram</a>
+
+  <a href="https://youtube.com/@RaffaelePalermo" target="_blank">▶</a>
+  <a href="https://t.me" target="_blank">✈</a>
+  <a href="https://instagram.com" target="_blank">◉</a>
+
 </section>
 
 <footer class="footer">
@@ -110,22 +105,28 @@
 
 <script>
 
-/* MAIN VIDEO */
-const fallbackVideo = "VS573-EnX3s";
+/* =========================
+   MAIN VIDEO CENTRATO
+========================= */
+
+const fallback = "VS573-EnX3s";
 
 setTimeout(() => {
   document.getElementById("main-video").innerHTML = `
     <iframe 
-      src="https://www.youtube.com/embed/${fallbackVideo}?autoplay=1&mute=1&playsinline=1&rel=0"
+      src="https://www.youtube.com/embed/${fallback}?autoplay=1&mute=1&playsinline=1&rel=0"
       allow="autoplay; encrypted-media"
       allowfullscreen>
     </iframe>
   `;
 }, 300);
 
-/* FEED */
+/* =========================
+   FEED 3 VIDEO (WORKER)
+========================= */
+
 fetch("https://TUO-WORKER.workers.dev")
-.then(res => res.json())
+.then(r => r.json())
 .then(videos => {
 
   const grid = document.getElementById("video-grid");
@@ -144,17 +145,23 @@ fetch("https://TUO-WORKER.workers.dev")
   grid.innerHTML = html;
 });
 
-/* ANIMAZIONI */
+/* =========================
+   ANIMAZIONI APPLE NEWS STYLE
+========================= */
+
 const obs = new IntersectionObserver(entries => {
   entries.forEach(e => {
-    if(e.isIntersecting) e.target.classList.add("visible");
+    if(e.isIntersecting){
+      e.target.classList.add("visible");
+    }
   });
 });
+
 document.querySelectorAll(".reveal").forEach(el => obs.observe(el));
 
 /* HEADER SCROLL */
 window.addEventListener("scroll", () => {
-  document.querySelector(".header").classList.toggle("scrolled", window.scrollY > 40);
+  document.querySelector(".header").classList.toggle("scrolled", window.scrollY > 50);
 });
 
 </script>
