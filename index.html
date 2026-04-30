@@ -4,9 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Raffaele Palermo</title>
+<title>Raffaele Palermo | Independent Analysis</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 
 </head>
@@ -16,7 +16,10 @@
 <header class="header">
   <div class="header-inner">
     <img src="logo.png" class="logo">
-    <span class="brand">RAFFAELE PALERMO</span>
+    <div>
+      <div class="brand">RAFFAELE PALERMO</div>
+      <div class="subbrand">Independent Journalism & Analysis</div>
+    </div>
   </div>
 </header>
 
@@ -24,24 +27,37 @@
 
 <!-- HERO -->
 <section class="hero reveal">
-  <h1>Non è informazione.<br>È analisi di ciò che non ti viene detto.</h1>
+
+  <div class="kicker">LATEST ANALYSIS</div>
+
+  <h1>Non è informazione.<br>È ciò che non ti viene raccontato.</h1>
+
+  <p class="lead">
+    Analisi indipendente su media, potere e narrazione contemporanea.
+  </p>
 
   <a href="https://youtube.com/@RaffaelePalermo" target="_blank" class="cta">
     ▶ Guarda l’ultima analisi
   </a>
+
 </section>
 
-<!-- MAIN VIDEO -->
-<section class="main-video reveal">
-  <div id="main-video"></div>
+<!-- FEATURE VIDEO -->
+<section class="feature reveal">
+
+  <div class="section-title">Top Story</div>
+
+  <div id="main-video" class="video-feature"></div>
+
 </section>
 
-<!-- FEED -->
-<section class="video-feed reveal">
-  <div class="feed-header">
-    <h2>Ultimi contenuti</h2>
-  </div>
-  <div id="video-grid"></div>
+<!-- LATEST VIDEOS -->
+<section class="latest reveal">
+
+  <div class="section-title">Latest Content</div>
+
+  <div id="video-grid" class="grid"></div>
+
 </section>
 
 <!-- ABOUT -->
@@ -53,17 +69,22 @@
 
     <div class="about-text">
 
-      <h2>Chi è Raffaele Palermo</h2>
+      <div class="section-title">About</div>
 
-      <p>Mi occupo di analisi critica, giornalismo indipendente e comunicazione, con un focus su ciò che accade dietro le notizie: dinamiche di potere, narrazioni e manipolazione dell’informazione.</p>
+      <p>
+        Mi occupo di analisi critica, giornalismo indipendente e comunicazione, con un focus su ciò che accade dietro le notizie: dinamiche di potere, narrazioni e manipolazione dell’informazione.
+      </p>
 
-      <p>Ho iniziato nel 2020, pubblicando analisi nel pieno del periodo pandemico. Nel 2021 il progetto è diventato un punto di riferimento in Italia per l’informazione indipendente, superando le 60.000 visite giornaliere.</p>
+      <p>
+        Ho iniziato nel 2020, pubblicando analisi nel pieno del periodo pandemico. Nel 2021 il progetto è diventato un punto di riferimento in Italia per l’informazione indipendente.
+      </p>
 
-      <p>Oggi il lavoro continua con una community attiva su più piattaforme.</p>
+      <p>
+        Oggi il lavoro continua con una community attiva su più piattaforme.
+      </p>
 
       <blockquote>
-        Il mio obiettivo non è dirti cosa pensare.  
-        È renderti più difficile da convincere.
+        Il mio obiettivo non è dirti cosa pensare. È renderti più difficile da convincere.
       </blockquote>
 
       <div class="signature">E non è un caso.</div>
@@ -76,74 +97,54 @@
 
 <!-- SOCIAL -->
 <section class="social reveal">
-
-  <a href="https://youtube.com/@RaffaelePalermo">▶ YouTube</a>
-  <a href="https://t.me">✈ Telegram</a>
-  <a href="https://instagram.com">◉ Instagram</a>
-
+  <a href="https://youtube.com/@RaffaelePalermo">YouTube</a>
+  <a href="https://t.me">Telegram</a>
+  <a href="https://instagram.com">Instagram</a>
 </section>
 
-<footer>
-⚠️ Questo è l’unico sito ufficiale del progetto.
+<footer class="footer">
+⚠️ Sito ufficiale del progetto indipendente Raffaele Palermo.
 </footer>
 
 </main>
 
 <script>
 
-/* =========================
-   VIDEO LOGIC (STABILE)
-========================= */
-
+/* MAIN VIDEO */
 const fallbackVideo = "VS573-EnX3s";
 
 setTimeout(() => {
-  const main = document.getElementById("main-video");
-
-  main.innerHTML = `
+  document.getElementById("main-video").innerHTML = `
     <iframe 
       src="https://www.youtube.com/embed/${fallbackVideo}?autoplay=1&mute=1&playsinline=1&rel=0"
       allow="autoplay; encrypted-media"
-      allowfullscreen
-      style="width:100%; height:520px; border-radius:18px;">
+      allowfullscreen>
     </iframe>
   `;
 }, 300);
 
-/* =========================
-   OPTIONAL FEED (WORKER)
-========================= */
-
+/* FEED */
 fetch("https://TUO-WORKER.workers.dev")
 .then(res => res.json())
 .then(videos => {
 
   const grid = document.getElementById("video-grid");
-
   if (!videos || !videos.length) return;
 
   let html = "";
 
   videos.slice(1,4).forEach(v => {
     html += `
-      <div class="video-card">
-        <iframe 
-          src="https://www.youtube.com/embed/${v.id}" 
-          allowfullscreen>
-        </iframe>
+      <div class="card">
+        <iframe src="https://www.youtube.com/embed/${v.id}" allowfullscreen></iframe>
       </div>
     `;
   });
 
   grid.innerHTML = html;
-})
-.catch(() => {
-  console.log("Worker non attivo");
 });
 
-/* =========================
-   SCROLL ANIMATION
-========================= */
+/* ANIMAZIONI */
 const obs = new IntersectionObserver(entries => {
   entries.forEach(e => {
     if(e.isIntersecting) e.target.classList.add("visible");
@@ -151,11 +152,9 @@ const obs = new IntersectionObserver(entries => {
 });
 document.querySelectorAll(".reveal").forEach(el => obs.observe(el));
 
-/* =========================
-   HEADER EFFECT
-========================= */
+/* HEADER SCROLL */
 window.addEventListener("scroll", () => {
-  document.querySelector(".header").classList.toggle("scrolled", window.scrollY > 50);
+  document.querySelector(".header").classList.toggle("scrolled", window.scrollY > 40);
 });
 
 </script>
