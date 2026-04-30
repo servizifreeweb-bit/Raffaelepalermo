@@ -8,17 +8,14 @@
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
+
 </head>
 
 <body>
 
-<!-- OVERLAY -->
-<div class="menu-overlay" id="menuOverlay"></div>
-
-<!-- HEADER -->
+<!-- HEADER CENTRATO -->
 <header class="header">
-
-  <div class="header-inner">
+  <div class="header-inner center-header">
 
     <img src="logo.png" class="logo">
 
@@ -27,30 +24,22 @@
       <div class="subbrand">Divulgatore indipendente e analisi critica</div>
     </div>
 
-    <button class="menu-btn" id="menuBtn">☰</button>
-
-    <div class="menu-dropdown" id="menu">
-
-      <a href="#top">Home</a>
-      <a href="#video-grid">Ultimi video</a>
-      <a href="https://tr.ee/KDRI5BlzEX" target="_blank">Contattami</a>
-      <a href="https://t.me" target="_blank">Telegram</a>
-
-    </div>
-
   </div>
 </header>
 
 <main class="container">
 
-<section class="hero" id="top">
+<!-- HERO PIÙ COMPATTO -->
+<section class="hero reveal center">
 
   <h1 class="hero-title">
     Non è informazione.<br>
     È ciò che viene filtrato prima di arrivare a te
   </h1>
 
-  <p class="lead">Analisi indipendente su media, potere e narrazione contemporanea.</p>
+  <p class="lead">
+    Analisi indipendente su media, potere e narrazione contemporanea.
+  </p>
 
   <div class="cta-wrapper">
     <a class="cta" href="https://youtube.com/@RaffaelePalermo" target="_blank">
@@ -60,85 +49,133 @@
 
 </section>
 
-<section class="main-video">
+<!-- MAIN VIDEO -->
+<section class="main-video reveal">
   <div class="video-center" id="main-video"></div>
 </section>
 
-<section class="video-feed">
+<!-- LATEST CONTENT -->
+<section class="video-feed reveal center">
+
   <h2 class="section-title">Ultimi Video Pubblicati</h2>
+
   <div id="video-grid" class="grid"></div>
+
 </section>
 
-<section class="social">
+<!-- ABOUT -->
+<section class="about reveal">
 
-  <a href="https://youtube.com/@RaffaelePalermo">
-    <span>▶</span> YouTube
+  <div class="about-grid">
+
+    <img src="profile.jpg" class="profile">
+
+    <div class="about-text">
+
+      <h2>Chi è Raffaele Palermo</h2>
+
+      <p>
+        Mi occupo di analisi critica, giornalismo indipendente e comunicazione, con focus sulle dinamiche di potere e narrazione mediatica.
+      </p>
+
+      <p>
+        Ho iniziato nel 2020 e nel 2021 il progetto è diventato un punto di riferimento in Italia per l’informazione indipendente.
+      </p>
+
+      <blockquote>
+        Il mio obiettivo non è dirti cosa pensare. È renderti più difficile da convincere.
+      </blockquote>
+
+      <div class="signature">E non è un caso.</div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- SOCIAL VERTICALI (FIX VERO) -->
+<section class="social reveal social-vertical">
+
+  <a href="https://youtube.com/@RaffaelePalermo" target="_blank">
+    <span class="icon">▶</span>
+    <span class="label">YouTube</span>
   </a>
 
-  <a href="https://t.me">
-    <span>✈</span> Telegram
+  <a href="https://t.me" target="_blank">
+    <span class="icon">✈</span>
+    <span class="label">Telegram</span>
   </a>
 
-  <a href="https://instagram.com">
-    <span>◉</span> Instagram
+  <a href="https://instagram.com" target="_blank">
+    <span class="icon">◉</span>
+    <span class="label">Instagram</span>
   </a>
 
-  <a href="https://tiktok.com">
-    <span>♪</span> TikTok
+  <a href="https://tiktok.com" target="_blank">
+    <span class="icon">♪</span>
+    <span class="label">TikTok</span>
   </a>
 
 </section>
 
 <footer class="footer">
-Sito ufficiale progetto indipendente.
+⚠️ Sito ufficiale del progetto indipendente di Raffaele Palermo.  
+Non sono affiliato a piattaforme o domini che utilizzano il mio nome senza autorizzazione.
 </footer>
 
 </main>
 
 <script>
 
-/* VIDEO */
+/* MAIN VIDEO */
 const fallback = "VS573-EnX3s";
 
 setTimeout(() => {
   document.getElementById("main-video").innerHTML = `
     <iframe 
-      src="https://www.youtube.com/embed/${fallback}?autoplay=1&mute=1&rel=0"
+      src="https://www.youtube.com/embed/${fallback}?autoplay=1&mute=1&playsinline=1&rel=0"
       allow="autoplay; encrypted-media"
       allowfullscreen>
     </iframe>
   `;
 }, 300);
 
-/* MENU FIX DEFINITIVO */
-const menu = document.getElementById("menu");
-const overlay = document.getElementById("menuOverlay");
-const btn = document.getElementById("menuBtn");
+/* FEED */
+fetch("https://TUO-WORKER.workers.dev")
+.then(r => r.json())
+.then(videos => {
 
-function openMenu(){
-  menu.classList.add("active");
-  overlay.classList.add("active");
-}
+  const grid = document.getElementById("video-grid");
+  if (!videos || !videos.length) return;
 
-function closeMenu(){
-  menu.classList.remove("active");
-  overlay.classList.remove("active");
-}
+  let html = "";
 
-btn.addEventListener("click", (e) => {
-  e.stopPropagation();
-  if(menu.classList.contains("active")){
-    closeMenu();
-  } else {
-    openMenu();
-  }
+  videos.slice(1,4).forEach(v => {
+    html += `
+      <div class="card">
+        <iframe src="https://www.youtube.com/embed/${v.id}" allowfullscreen></iframe>
+      </div>
+    `;
+  });
+
+  grid.innerHTML = html;
 });
 
-overlay.addEventListener("click", closeMenu);
+/* ANIMAZIONI */
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if(e.isIntersecting){
+      e.target.classList.add("visible");
+    }
+  });
+});
 
-/* chiusura automatica su click link */
-document.querySelectorAll(".menu-dropdown a").forEach(a => {
-  a.addEventListener("click", closeMenu);
+document.querySelectorAll(".reveal").forEach(el => obs.observe(el));
+
+/* HEADER SCROLL */
+window.addEventListener("scroll", () => {
+  document.querySelector(".header").classList.toggle("scrolled", window.scrollY > 50);
 });
 
 </script>
