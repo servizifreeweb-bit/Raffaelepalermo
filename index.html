@@ -7,10 +7,8 @@
 
 <title>Raffaele Palermo | Analisi critica e informazione indipendente</title>
 
-<!-- SEO -->
 <meta name="description" content="Analisi critica su media, potere e informazione. Approfondimenti indipendenti per capire cosa c’è dietro le notizie.">
 
-<!-- Open Graph -->
 <meta property="og:title" content="Raffaele Palermo - Analisi indipendente">
 <meta property="og:description" content="Capire ciò che viene filtrato prima di arrivare a te.">
 <meta property="og:image" content="logo.png">
@@ -18,14 +16,15 @@
 <meta property="og:url" content="https://raffaelepalermo.pages.dev/">
 <meta property="og:site_name" content="Raffaele Palermo">
 
-<!-- Favicon -->
 <link rel="icon" href="logo.png" type="image/png">
 
-<!-- Performance -->
+<!-- PERFORMANCE FIX -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+
 <link rel="stylesheet" href="style.css">
 
 </head>
@@ -105,52 +104,34 @@
 </section>
 
 <h2 class="section-title">Seguimi sui social e Telegram per non perdere le future Analisi.</h2>
-  
+
 <section class="social reveal social-vertical">
-  
-  <a href="https://youtube.com/@RaffaelePalermo" target="_blank" rel="noopener">
-    <span class="icon">▶</span>
-    <span class="label">YouTube</span>
-  </a>
 
-  <a href="https://t.me" target="_blank" rel="noopener">
-    <span class="icon">✈</span>
-    <span class="label">Telegram</span>
-  </a>
-
-  <a href="https://instagram.com" target="_blank" rel="noopener">
-    <span class="icon">◉</span>
-    <span class="label">Instagram</span>
-  </a>
-
-  <a href="https://tiktok.com" target="_blank" rel="noopener">
-    <span class="icon">♪</span>
-    <span class="label">TikTok</span>
-  </a>
-
-  <a href="https://tr.ee/KDRI5BlzEX" target="_blank" rel="noopener">
-    <span class="icon">✉</span>
-    <span class="label">Contatti</span>
-  </a>
+  <a href="https://youtube.com/@RaffaelePalermo" target="_blank" rel="noopener">▶ YouTube</a>
+  <a href="https://t.me" target="_blank" rel="noopener">✈ Telegram</a>
+  <a href="https://instagram.com" target="_blank" rel="noopener">◉ Instagram</a>
+  <a href="https://tiktok.com" target="_blank" rel="noopener">♪ TikTok</a>
+  <a href="https://tr.ee/KDRI5BlzEX" target="_blank" rel="noopener">✉ Contatti</a>
 
 </section>
 
 <footer class="footer">
-⚠️ Questo è l’unico sito ufficiale del progetto di Raffaele Palermo. Non sono affiliato a piattaforme o domini che utilizzano il mio nome senza autorizzazione.
+⚠️ Questo è l’unico sito ufficiale del progetto di Raffaele Palermo.
 </footer>
 
 </main>
 
-<script defer>
+<script>
+window.addEventListener("load", () => {
 
-/* VIDEO */
+/* VIDEO - FIX LCP */
 const fallback = "VS573-EnX3s";
 
 document.getElementById("main-video").innerHTML = `
   <iframe 
     src="https://www.youtube.com/embed/${fallback}?autoplay=1&mute=1&playsinline=1&rel=0"
-    allow="autoplay; encrypted-media"
     loading="lazy"
+    allow="autoplay; encrypted-media"
     allowfullscreen>
   </iframe>
 `;
@@ -167,15 +148,14 @@ fetch("https://feedvideoyt.servizifreeweb.workers.dev")
   grid.innerHTML = videos.slice(1,4).map(v => `
     <div class="card">
       <iframe 
-        src="https://www.youtube.com/embed/${v.id}" 
+        src="https://www.youtube.com/embed/${v.id}"
         loading="lazy"
         allowfullscreen>
       </iframe>
     </div>
   `).join("");
 
-})
-.catch(err => console.log("Feed error:", err));
+});
 
 /* ANIMAZIONI */
 const obs = new IntersectionObserver(entries => {
@@ -193,6 +173,7 @@ window.addEventListener("scroll", () => {
   document.querySelector(".header").classList.toggle("scrolled", window.scrollY > 50);
 });
 
+});
 </script>
 
 </body>
