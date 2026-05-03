@@ -1,23 +1,36 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Raffaele Palermo | Divulgatore Indipendente</title>
+<title>Raffaele Palermo | Analisi critica e informazione indipendente</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<!-- SEO -->
+<meta name="description" content="Analisi critica su media, potere e informazione. Approfondimenti indipendenti per capire cosa c’è dietro le notizie.">
+
+<!-- Open Graph -->
+<meta property="og:title" content="Raffaele Palermo - Analisi indipendente">
+<meta property="og:description" content="Capire ciò che viene filtrato prima di arrivare a te.">
+<meta property="og:image" content="logo.png">
+<meta property="og:type" content="website">
+
+<!-- Performance -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 
 </head>
 
 <body>
 
-<!-- HEADER CENTRATO -->
 <header class="header">
   <div class="header-inner center-header">
 
-    <img src="logo.png" class="logo">
+    <img src="logo.png" class="logo" alt="Logo Raffaele Palermo" loading="lazy">
 
     <div class="header-text">
       <div class="brand">RAFFAELE PALERMO</div>
@@ -29,7 +42,6 @@
 
 <main class="container">
 
-<!-- HERO PIÙ COMPATTO -->
 <section class="hero reveal center">
 
   <h1 class="hero-title">
@@ -42,19 +54,17 @@
   </p>
 
   <div class="cta-wrapper">
-    <a class="cta" href="https://youtube.com/@RaffaelePalermo" target="_blank">
+    <a class="cta" href="https://youtube.com/@RaffaelePalermo" target="_blank" rel="noopener">
       ▶ Guarda l’ultima analisi
     </a>
   </div>
 
 </section>
 
-<!-- MAIN VIDEO -->
 <section class="main-video reveal">
   <div class="video-center" id="main-video"></div>
 </section>
 
-<!-- LATEST CONTENT -->
 <section class="video-feed reveal center">
 
   <h2 class="section-title">Ultimi Video Pubblicati</h2>
@@ -63,23 +73,18 @@
 
 </section>
 
-<!-- ABOUT -->
 <section class="about reveal">
 
   <div class="about-grid">
 
-    <img src="profile.jpg" class="profile">
+    <img src="profile.jpg" class="profile" alt="Raffaele Palermo" loading="lazy">
 
     <div class="about-text">
 
       <h2>Chi è Raffaele Palermo</h2>
 
       <p>
-        Mi occupo di analisi critica, giornalismo indipendente e comunicazione, con focus sulle dinamiche di potere e narrazione mediatica.
-      </p>
-
-      <p>
-        Ho iniziato nel 2020 e nel 2021 il progetto è diventato un punto di riferimento in Italia per l’informazione indipendente.
+        Analista indipendente focalizzato su informazione, media e dinamiche di potere.
       </p>
 
       <blockquote>
@@ -94,73 +99,67 @@
 
 </section>
 
-<!-- SOCIAL VERTICALI (FIX VERO) -->
 <section class="social reveal social-vertical">
 
-  <a href="https://youtube.com/@RaffaelePalermo" target="_blank">
-    <span class="icon">▶</span>
-    <span class="label">YouTube</span>
+  <a href="https://youtube.com/@RaffaelePalermo" target="_blank" rel="noopener">
+    ▶ YouTube
   </a>
 
-  <a href="https://t.me" target="_blank">
-    <span class="icon">✈</span>
-    <span class="label">Telegram</span>
+  <a href="https://t.me" target="_blank" rel="noopener">
+    ✈ Telegram
   </a>
 
-  <a href="https://instagram.com" target="_blank">
-    <span class="icon">◉</span>
-    <span class="label">Instagram</span>
+  <a href="https://instagram.com" target="_blank" rel="noopener">
+    ◉ Instagram
   </a>
 
-  <a href="https://tiktok.com" target="_blank">
-    <span class="icon">♪</span>
-    <span class="label">TikTok</span>
+  <a href="https://tiktok.com" target="_blank" rel="noopener">
+    ♪ TikTok
   </a>
 
 </section>
 
 <footer class="footer">
-⚠️ Sito ufficiale del progetto indipendente di Raffaele Palermo.  
-Non sono affiliato a piattaforme o domini che utilizzano il mio nome senza autorizzazione.
+⚠️ Sito ufficiale del progetto indipendente.
 </footer>
 
 </main>
 
 <script>
 
-/* MAIN VIDEO */
+/* VIDEO (SENZA setTimeout inutile) */
 const fallback = "VS573-EnX3s";
 
-setTimeout(() => {
-  document.getElementById("main-video").innerHTML = `
-    <iframe 
-      src="https://www.youtube.com/embed/${fallback}?autoplay=1&mute=1&playsinline=1&rel=0"
-      allow="autoplay; encrypted-media"
-      allowfullscreen>
-    </iframe>
-  `;
-}, 300);
+document.getElementById("main-video").innerHTML = `
+  <iframe 
+    src="https://www.youtube.com/embed/${fallback}?autoplay=1&mute=1&playsinline=1&rel=0"
+    allow="autoplay; encrypted-media"
+    loading="lazy"
+    allowfullscreen>
+  </iframe>
+`;
 
-/* FEED */
+/* FEED OTTIMIZZATO */
 fetch("https://TUO-WORKER.workers.dev")
 .then(r => r.json())
 .then(videos => {
 
-  const grid = document.getElementById("video-grid");
   if (!videos || !videos.length) return;
 
-  let html = "";
+  const grid = document.getElementById("video-grid");
 
-  videos.slice(1,4).forEach(v => {
-    html += `
-      <div class="card">
-        <iframe src="https://www.youtube.com/embed/${v.id}" allowfullscreen></iframe>
-      </div>
-    `;
-  });
+  grid.innerHTML = videos.slice(1,4).map(v => `
+    <div class="card">
+      <iframe 
+        src="https://www.youtube.com/embed/${v.id}" 
+        loading="lazy"
+        allowfullscreen>
+      </iframe>
+    </div>
+  `).join("");
 
-  grid.innerHTML = html;
-});
+})
+.catch(err => console.log("Feed error:", err));
 
 /* ANIMAZIONI */
 const obs = new IntersectionObserver(entries => {
@@ -173,7 +172,7 @@ const obs = new IntersectionObserver(entries => {
 
 document.querySelectorAll(".reveal").forEach(el => obs.observe(el));
 
-/* HEADER SCROLL */
+/* HEADER */
 window.addEventListener("scroll", () => {
   document.querySelector(".header").classList.toggle("scrolled", window.scrollY > 50);
 });
