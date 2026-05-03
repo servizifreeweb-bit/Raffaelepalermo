@@ -15,6 +15,11 @@
 <meta property="og:description" content="Capire ciò che viene filtrato prima di arrivare a te.">
 <meta property="og:image" content="logo.png">
 <meta property="og:type" content="website">
+<meta property="og:url" content="https://raffaelepalermo.pages.dev/">
+<meta property="og:site_name" content="Raffaele Palermo">
+
+<!-- Favicon -->
+<link rel="icon" href="logo.png" type="image/png">
 
 <!-- Performance -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -30,7 +35,7 @@
 <header class="header">
   <div class="header-inner center-header">
 
-    <img src="logo.png" class="logo" alt="Logo Raffaele Palermo" loading="lazy">
+    <img src="logo.png" class="logo" alt="Logo Raffaele Palermo">
 
     <div class="header-text">
       <div class="brand">RAFFAELE PALERMO</div>
@@ -104,19 +109,28 @@
 <section class="social reveal social-vertical">
   
   <a href="https://youtube.com/@RaffaelePalermo" target="_blank" rel="noopener">
-    ▶ YouTube
+    <span class="icon">▶</span>
+    <span class="label">YouTube</span>
   </a>
 
   <a href="https://t.me" target="_blank" rel="noopener">
-    ✈ Telegram
+    <span class="icon">✈</span>
+    <span class="label">Telegram</span>
   </a>
 
   <a href="https://instagram.com" target="_blank" rel="noopener">
-    ◉ Instagram
+    <span class="icon">◉</span>
+    <span class="label">Instagram</span>
   </a>
 
   <a href="https://tiktok.com" target="_blank" rel="noopener">
-    ♪ TikTok
+    <span class="icon">♪</span>
+    <span class="label">TikTok</span>
+  </a>
+
+  <a href="https://tr.ee/KDRI5BlzEX" target="_blank" rel="noopener">
+    <span class="icon">✉</span>
+    <span class="label">Contatti</span>
   </a>
 
 </section>
@@ -127,9 +141,9 @@
 
 </main>
 
-<script>
+<script defer>
 
-/* VIDEO (SENZA setTimeout inutile) */
+/* VIDEO */
 const fallback = "VS573-EnX3s";
 
 document.getElementById("main-video").innerHTML = `
@@ -141,7 +155,7 @@ document.getElementById("main-video").innerHTML = `
   </iframe>
 `;
 
-/* FEED OTTIMIZZATO */
+/* FEED */
 fetch("https://TUO-WORKER.workers.dev")
 .then(r => r.json())
 .then(videos => {
