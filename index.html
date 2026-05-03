@@ -65,7 +65,7 @@
 
 </section>
 
-<!-- HERO VIDEO (CLICK TO LOAD - LCP FIX MASSIMO) -->
+<!-- HERO VIDEO LAZY (FIX LCP) -->
 <section class="main-video reveal">
   <div class="video-center" id="main-video"></div>
 </section>
@@ -125,75 +125,54 @@
 <script>
 window.addEventListener("load", () => {
 
-/* =========================
-   HERO VIDEO - CLICK TO LOAD (LCP FIX)
-========================= */
+/* HERO VIDEO - LAZY TRUE (LCP FIX) */
 const fallback = "VS573-EnX3s";
 const hero = document.getElementById("main-video");
 
-hero.innerHTML = `
-  <div class="yt-placeholder" id="yt-trigger">
-    <img 
-      src="https://img.youtube.com/vi/${fallback}/hqdefault.jpg"
-      alt="Video preview"
-      loading="lazy"
-    />
-    <div class="play-button">▶</div>
-  </div>
-`;
-
-document.getElementById("yt-trigger").addEventListener("click", () => {
-  hero.innerHTML = `
-    <iframe 
-      src="https://www.youtube.com/embed/${fallback}?autoplay=1&mute=1&rel=0"
-      allow="autoplay; encrypted-media"
-      allowfullscreen>
-    </iframe>
-  `;
-});
-
-
-/* =========================
-   FEED VIDEO - LAZY ON VIEWPORT (INP FIX)
-========================= */
-let feedLoaded = false;
-
-const feedObserver = new IntersectionObserver((entries) => {
+const obsVideo = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
-    if (entry.isIntersecting && !feedLoaded) {
-      feedLoaded = true;
-
-      fetch("https://feedvideoyt.servizifreeweb.workers.dev")
-      .then(r => r.json())
-      .then(videos => {
-
-        if (!videos || !videos.length) return;
-
-        const grid = document.getElementById("video-grid");
-
-        grid.innerHTML = videos.slice(1,4).map(v => `
-          <div class="card">
-            <iframe 
-              src="https://www.youtube.com/embed/${v.id}"
-              loading="lazy"
-              allowfullscreen>
-            </iframe>
-          </div>
-        `).join("");
-
-      });
-
-      feedObserver.disconnect();
+    if (entry.isIntersecting) {
+      hero.innerHTML = `
+        <iframe 
+          src="https://www.youtube.com/embed/${fallback}?autoplay=1&mute=1&rel=0"
+          loading="lazy"
+          allow="autoplay; encrypted-media"
+          allowfullscreen>
+        </iframe>
+      `;
+      obsVideo.disconnect();
     }
   });
 });
 
-feedObserver.observe(document.getElementById("video-grid"));
+obsVideo.observe(hero);
 
+/* FEED (DELAY PER INP) */
+setTimeout(() => {
 
-/* =========================
-   ANIMAZIONI (UNCHANGED)
-========================= */
+fetch("https://feedvideoyt.servizifreeweb.workers.dev")
+.then(r => r.json())
+.then(videos => {
+
+  if (!videos || !videos.length) return;
+
+  const grid = document.getElementById("video-grid");
+
+  grid.innerHTML = videos.slice(1,4).map(v => `
+    <div class="card">
+      <iframe 
+        src="https://www.youtube.com/embed/${v.id}"
+        loading="lazy"
+        allowfullscreen>
+      </iframe>
+    </div>
+  `).join("");
+
+});
+
+}, 1200);
+
+/* ANIMAZIONI */
 const obs = new IntersectionObserver(entries => {
   entries.forEach(e => {
     if(e.isIntersecting){
@@ -204,10 +183,7 @@ const obs = new IntersectionObserver(entries => {
 
 document.querySelectorAll(".reveal").forEach(el => obs.observe(el));
 
-
-/* =========================
-   HEADER SCROLL
-========================= */
+/* HEADER */
 window.addEventListener("scroll", () => {
   document.querySelector(".header").classList.toggle("scrolled", window.scrollY > 50);
 });
