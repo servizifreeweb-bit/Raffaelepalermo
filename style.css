@@ -3,6 +3,11 @@ body {
   font-family: 'Inter', sans-serif;
   background: radial-gradient(circle at top, #0b1220, #020617);
   color: #e5e7eb;
+
+  /* PERFORMANCE FIX */
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 /* =========================
@@ -13,6 +18,10 @@ body {
   position: sticky;
   top: 0;
   background: rgba(2,6,23,0.6);
+
+  /* PERFORMANCE FIX */
+  will-change: background;
+
   backdrop-filter: blur(14px);
   border-bottom: 1px solid rgba(255,255,255,0.05);
   z-index: 10;
@@ -36,6 +45,7 @@ body {
 
 .logo {
   width: 42px;
+  content-visibility: auto; /* PERFORMANCE FIX */
 }
 
 .brand {
@@ -120,6 +130,9 @@ body {
 .video-center {
   display: flex;
   justify-content: center;
+
+  /* PERFORMANCE FIX */
+  contain: layout paint;
 }
 
 .video-center iframe {
@@ -128,6 +141,9 @@ body {
   height: 520px;
   border-radius: 18px;
   box-shadow: 0 0 90px rgba(37,99,235,0.25);
+
+  /* PERFORMANCE FIX */
+  contain: strict;
 }
 
 /* =========================
@@ -138,10 +154,17 @@ body {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 18px;
+
+  /* PERFORMANCE FIX */
+  content-visibility: auto;
+  contain-intrinsic-size: 500px;
 }
 
 .card {
   transition: transform 0.3s ease;
+
+  /* PERFORMANCE FIX */
+  contain: paint;
 }
 
 .card iframe {
@@ -168,6 +191,9 @@ body {
 .profile {
   width: 100%;
   border-radius: 14px;
+
+  /* PERFORMANCE FIX */
+  content-visibility: auto;
 }
 
 blockquote {
@@ -184,14 +210,14 @@ blockquote {
 }
 
 /* =========================
-   SOCIAL (DESKTOP ORIZZONTALE)
+   SOCIAL
 ========================= */
 
 .social {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  flex-wrap: wrap; /* evita rotture layout */
+  flex-wrap: wrap;
   gap: 14px;
   margin-top: 60px;
 }
@@ -238,6 +264,9 @@ blockquote {
   opacity: 0;
   transform: translateY(35px);
   transition: 0.9s ease;
+
+  /* PERFORMANCE FIX */
+  will-change: transform, opacity;
 }
 
 .reveal.visible {
@@ -246,7 +275,7 @@ blockquote {
 }
 
 /* =========================
-   MOBILE (VERTICALE)
+   MOBILE
 ========================= */
 
 @media (max-width: 768px) {
