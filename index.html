@@ -23,7 +23,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
 
 <link rel="stylesheet" href="style.css">
 
@@ -65,6 +65,7 @@
 
 </section>
 
+<!-- HERO VIDEO LAZY (FIX LCP) -->
 <section class="main-video reveal">
   <div class="video-center" id="main-video"></div>
 </section>
@@ -124,19 +125,31 @@
 <script>
 window.addEventListener("load", () => {
 
-/* VIDEO - FIX LCP */
+/* HERO VIDEO - LAZY TRUE (LCP FIX) */
 const fallback = "VS573-EnX3s";
+const hero = document.getElementById("main-video");
 
-document.getElementById("main-video").innerHTML = `
-  <iframe 
-    src="https://www.youtube.com/embed/${fallback}?autoplay=1&mute=1&playsinline=1&rel=0"
-    loading="lazy"
-    allow="autoplay; encrypted-media"
-    allowfullscreen>
-  </iframe>
-`;
+const obsVideo = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      hero.innerHTML = `
+        <iframe 
+          src="https://www.youtube.com/embed/${fallback}?autoplay=1&mute=1&rel=0"
+          loading="lazy"
+          allow="autoplay; encrypted-media"
+          allowfullscreen>
+        </iframe>
+      `;
+      obsVideo.disconnect();
+    }
+  });
+});
 
-/* FEED */
+obsVideo.observe(hero);
+
+/* FEED (DELAY PER INP) */
+setTimeout(() => {
+
 fetch("https://feedvideoyt.servizifreeweb.workers.dev")
 .then(r => r.json())
 .then(videos => {
@@ -156,6 +169,8 @@ fetch("https://feedvideoyt.servizifreeweb.workers.dev")
   `).join("");
 
 });
+
+}, 1200);
 
 /* ANIMAZIONI */
 const obs = new IntersectionObserver(entries => {
