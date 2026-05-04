@@ -172,21 +172,25 @@ Non sono affiliato a piattaforme o domini che utilizzano il mio nome senza autor
 <script>
 window.addEventListener("load", () => {
 
-/* HERO VIDEO - NO AUTOPLAY */
+/* =========================
+   HERO VIDEO (THUMB → CLICK)
+========================= */
+
 const fallback = "VS573-EnX3s";
 const hero = document.getElementById("main-video");
 
 const obsVideo = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
+
       hero.innerHTML = `
-        <iframe 
-          src="https://www.youtube.com/embed/${fallback}?autoplay=1&mute=1&playsinline=1&rel=0"
-          loading="lazy"
-          allow="encrypted-media"
-          allowfullscreen>
-        </iframe>
+        <div class="video-thumb" data-id="${fallback}">
+          <img src="https://img.youtube.com/vi/${fallback}/hqdefault.jpg" alt="">
+          <div class="play-button">▶</div>
+        </div>
       `;
+
+      attachVideoClick(hero);
       obsVideo.disconnect();
     }
   });
@@ -194,7 +198,11 @@ const obsVideo = new IntersectionObserver((entries) => {
 
 obsVideo.observe(hero);
 
-/* FEED FIX (MOSTRA ULTIMO VIDEO) */
+
+/* =========================
+   FEED VIDEO (THUMB → CLICK)
+========================= */
+
 setTimeout(() => {
 
 fetch("https://feedvideoyt.servizifreeweb.workers.dev")
@@ -207,19 +215,45 @@ fetch("https://feedvideoyt.servizifreeweb.workers.dev")
 
   grid.innerHTML = videos.slice(0,3).map(v => `
     <div class="card">
-      <iframe 
-        src="https://www.youtube.com/embed/${v.id}"
-        loading="lazy"
-        allowfullscreen>
-      </iframe>
+      <div class="video-thumb" data-id="${v.id}">
+        <img src="https://img.youtube.com/vi/${v.id}/hqdefault.jpg" alt="">
+        <div class="play-button">▶</div>
+      </div>
     </div>
   `).join("");
+
+  attachVideoClick(grid);
 
 });
 
 }, 1200);
 
-/* ANIMAZIONI */
+
+/* =========================
+   CLICK → LOAD IFRAME
+========================= */
+
+function attachVideoClick(container) {
+  container.querySelectorAll('.video-thumb').forEach(el => {
+    el.addEventListener('click', () => {
+      const id = el.dataset.id;
+
+      el.innerHTML = `
+        <iframe 
+          src="https://www.youtube-nocookie.com/embed/${id}?autoplay=1&mute=1&playsinline=1&rel=0"
+          allow="autoplay; encrypted-media"
+          allowfullscreen>
+        </iframe>
+      `;
+    });
+  });
+}
+
+
+/* =========================
+   ANIMAZIONI
+========================= */
+
 const obs = new IntersectionObserver(entries => {
   entries.forEach(e => {
     if(e.isIntersecting){
@@ -230,7 +264,11 @@ const obs = new IntersectionObserver(entries => {
 
 document.querySelectorAll(".reveal").forEach(el => obs.observe(el));
 
-/* HEADER */
+
+/* =========================
+   HEADER
+========================= */
+
 window.addEventListener("scroll", () => {
   document.querySelector(".header").classList.toggle("scrolled", window.scrollY > 50);
 });
