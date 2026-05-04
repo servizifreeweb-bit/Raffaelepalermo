@@ -179,7 +179,7 @@ const obsVideo = new IntersectionObserver((entries) => {
     if (entry.isIntersecting) {
       hero.innerHTML = `
         <iframe 
-          src="https://www.youtube.com/embed/${fallback}?rel=0"
+          src="https://www.youtube.com/embed/${fallback}?autoplay=1&mute=1&playsinline=1&rel=0"
           loading="lazy"
           allow="encrypted-media"
           allowfullscreen>
