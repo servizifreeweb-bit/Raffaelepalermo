@@ -170,7 +170,7 @@ Non sono affiliato a piattaforme o domini che utilizzano il mio nome senza autor
 <script>
 window.addEventListener("load", () => {
 
-/* HERO VIDEO - LAZY TRUE (LCP FIX) */
+/* HERO VIDEO - NO AUTOPLAY */
 const fallback = "VS573-EnX3s";
 const hero = document.getElementById("main-video");
 
@@ -179,9 +179,9 @@ const obsVideo = new IntersectionObserver((entries) => {
     if (entry.isIntersecting) {
       hero.innerHTML = `
         <iframe 
-          src="https://www.youtube.com/embed/${fallback}?autoplay=1&mute=1&rel=0"
+          src="https://www.youtube.com/embed/${fallback}?rel=0"
           loading="lazy"
-          allow="autoplay; encrypted-media"
+          allow="encrypted-media"
           allowfullscreen>
         </iframe>
       `;
@@ -192,7 +192,7 @@ const obsVideo = new IntersectionObserver((entries) => {
 
 obsVideo.observe(hero);
 
-/* FEED (DELAY PER INP) */
+/* FEED FIX (MOSTRA ULTIMO VIDEO) */
 setTimeout(() => {
 
 fetch("https://feedvideoyt.servizifreeweb.workers.dev")
@@ -203,7 +203,7 @@ fetch("https://feedvideoyt.servizifreeweb.workers.dev")
 
   const grid = document.getElementById("video-grid");
 
-  grid.innerHTML = videos.slice(1,4).map(v => `
+  grid.innerHTML = videos.slice(0,3).map(v => `
     <div class="card">
       <iframe 
         src="https://www.youtube.com/embed/${v.id}"
