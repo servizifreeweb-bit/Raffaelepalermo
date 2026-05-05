@@ -426,3 +426,50 @@ blockquote {
   transform: translate(-50%, -50%) scale(1.1);
   background: rgba(255,255,255,0.2);
 }
+
+/* =========================
+   HERO CINEMATIC GLOW (RESTORE PREMIUM LOOK)
+========================= */
+
+.video-center {
+  position: relative;
+}
+
+/* luce soffusa dietro al video */
+.video-center::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 900px;
+  height: 520px;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(
+    circle at center,
+    rgba(37, 99, 235, 0.25),
+    rgba(0, 0, 0, 0) 60%
+  );
+  filter: blur(40px);
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* profondità generale del blocco */
+.video-placeholder {
+  position: relative;
+  z-index: 1;
+}
+
+/* glow dinamico leggero */
+.video-placeholder::before {
+  content: "";
+  position: absolute;
+  inset: -20px;
+  background: radial-gradient(
+    circle at center,
+    rgba(37, 99, 235, 0.18),
+    transparent 70%
+  );
+  z-index: -1;
+  filter: blur(30px);
+}
