@@ -77,7 +77,21 @@
 
 <!-- HERO VIDEO LAZY (FIX LCP) -->
 <section class="main-video reveal">
-  <div class="video-center" id="main-video"></div>
+  <div class="video-center">
+
+    <div id="main-video" class="video-placeholder">
+
+      <img 
+        src="https://img.youtube.com/vi/VS573-EnX3s/maxresdefault.jpg"
+        alt="Video Raffaele Palermo"
+        loading="lazy"
+      />
+
+      <div class="play-overlay">▶</div>
+
+    </div>
+
+  </div>
 </section>
 
 <section class="video-feed reveal center">
@@ -164,27 +178,21 @@ Non sono affiliato a piattaforme o domini che utilizzano il mio nome senza autor
 <script>
 window.addEventListener("load", () => {
 
-/* HERO VIDEO - NO AUTOPLAY */
-const fallback = "VS573-EnX3s";
+/* HERO VIDEO - CLICK TO PLAY (NO COOKIE PRELOAD) */
+
 const hero = document.getElementById("main-video");
+const videoId = "VS573-EnX3s";
 
-const obsVideo = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      hero.innerHTML = `
-        <iframe 
-          src="https://www.youtube.com/embed/${fallback}?autoplay=1&mute=1&playsinline=1&rel=0"
-          loading="lazy"
-          allow="encrypted-media"
-          allowfullscreen>
-        </iframe>
-      `;
-      obsVideo.disconnect();
-    }
-  });
+hero.addEventListener("click", () => {
+  hero.innerHTML = `
+    <iframe 
+      src="https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&rel=0"
+      loading="lazy"
+      allow="autoplay; encrypted-media"
+      allowfullscreen>
+    </iframe>
+  `;
 });
-
-obsVideo.observe(hero);
 
 /* FEED FIX (MOSTRA ULTIMO VIDEO) */
 setTimeout(() => {
