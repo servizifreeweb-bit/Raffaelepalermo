@@ -174,8 +174,8 @@ const obsVideo = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
       hero.innerHTML = `
-        <iframe 
-          src="https://www.youtube.com/embed/${fallback}?autoplay=1&mute=1&playsinline=1&rel=0"
+       <iframe 
+          src="https://www.youtube.com/embed/${fallback}?rel=0"
           loading="lazy"
           allow="encrypted-media"
           allowfullscreen>
@@ -232,7 +232,7 @@ window.addEventListener("scroll", () => {
 });
 </script>
 
-  <!-- Cloudflare Web Analytics -->
+<!-- Cloudflare Web Analytics -->
   <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "13f03ee9a5bf471ab3352aab9f832a12"}'></script>
 <!-- End Cloudflare Web Analytics -->
   
