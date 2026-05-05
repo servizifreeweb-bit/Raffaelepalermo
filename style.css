@@ -31,7 +31,6 @@
   font-display: swap;
 }
 
-/* 🔒 BLOCCO COMPLETO FALLBACK ESTERNI FONT */
 @font-face {
   font-family: 'Inter-fallback-block';
   src: local('Inter'), local('Arial');
@@ -60,7 +59,6 @@ body {
   position: sticky;
   top: 0;
   background: rgba(2,6,23,0.6);
-  will-change: background;
   backdrop-filter: blur(14px);
   border-bottom: 1px solid rgba(255,255,255,0.05);
   z-index: 10;
@@ -84,17 +82,6 @@ body {
 
 .logo {
   width: 42px;
-  content-visibility: auto;
-}
-
-.brand {
-  font-weight: 800;
-  letter-spacing: 1px;
-}
-
-.subbrand {
-  font-size: 12px;
-  color: #94a3b8;
 }
 
 /* =========================
@@ -111,7 +98,7 @@ body {
    HERO
 ========================= */
 
-.hero, .breaking {
+.hero {
   padding: 60px 0 30px;
   text-align: center;
   display: flex;
@@ -119,7 +106,7 @@ body {
   align-items: center;
 }
 
-.hero h1, .breaking h1 {
+.hero h1 {
   font-size: 42px;
   font-weight: 800;
   line-height: 1.1;
@@ -136,16 +123,6 @@ body {
    CTA
 ========================= */
 
-.cta {
-  display: inline-block;
-  margin-top: 25px;
-  padding: 14px 26px;
-  border-radius: 10px;
-  text-decoration: none;
-  transition: 0.25s;
-  font-weight: 600;
-}
-
 .cta-wrapper {
   display: flex;
   gap: 12px;
@@ -154,24 +131,26 @@ body {
   flex-wrap: wrap;
 }
 
-.cta-youtube {
-  background: #ff0033;
-  color: white;
+.cta {
+  padding: 14px 26px;
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: 0.25s;
 }
 
-.cta-youtube:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 18px 35px rgba(255, 0, 51, 0.25);
+.cta-youtube {
+  background: #ff0033;
+  color: #fff;
 }
 
 .cta-telegram {
   background: #2563eb;
-  color: white;
+  color: #fff;
 }
 
-.cta-telegram:hover {
+.cta:hover {
   transform: translateY(-2px);
-  box-shadow: 0 18px 35px rgba(37,99,235,0.25);
 }
 
 /* =========================
@@ -187,60 +166,25 @@ body {
 }
 
 /* =========================
-   MAIN VIDEO
-========================= */
-
-.video-center {
-  display: flex;
-  justify-content: center;
-  contain: layout paint;
-}
-
-.video-center iframe {
-  width: 100%;
-  max-width: 900px;
-  height: 520px;
-  border-radius: 18px;
-  box-shadow: 0 0 90px rgba(37,99,235,0.25);
-  contain: strict;
-  border: 0;
-  display: block;
-}
-
-/* =========================
-   FEED VIDEO
+   VIDEO FEED
 ========================= */
 
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 18px;
-
-  content-visibility: auto;
-  contain-intrinsic-size: 500px;
-
-  overflow: hidden;
 }
 
 .card {
-  transition: transform 0.3s ease;
-  contain: paint;
-
-  overflow: hidden;
   border-radius: 14px;
+  overflow: hidden;
 }
 
 .card iframe {
   width: 100%;
   height: 200px;
-
-  border-radius: 14px;
   border: 0;
   display: block;
-}
-
-.card:hover {
-  transform: scale(1.03);
 }
 
 /* =========================
@@ -257,20 +201,6 @@ body {
 .profile {
   width: 100%;
   border-radius: 14px;
-  content-visibility: auto;
-}
-
-blockquote {
-  margin-top: 20px;
-  font-size: 16px;
-  color: #60a5fa;
-  font-weight: 600;
-}
-
-.signature {
-  margin-top: 10px;
-  font-style: italic;
-  color: #94a3b8;
 }
 
 /* =========================
@@ -279,31 +209,20 @@ blockquote {
 
 .social {
   display: flex;
-  flex-direction: row;
-  justify-content: center;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 14px;
   margin-top: 60px;
 }
 
 .social a {
-  display: flex;
-  align-items: center;
-  gap: 10px;
   padding: 10px 16px;
   border: 1px solid #334155;
   border-radius: 12px;
   color: #93c5fd;
   text-decoration: none;
-  transition: 0.3s;
   min-width: 140px;
-  justify-content: center;
-}
-
-.social a:hover {
-  background: #2563eb;
-  color: white;
-  transform: translateY(-3px);
+  text-align: center;
 }
 
 /* =========================
@@ -325,7 +244,6 @@ blockquote {
   opacity: 0;
   transform: translateY(35px);
   transition: 0.9s ease;
-  will-change: transform, opacity;
 }
 
 .reveal.visible {
@@ -334,156 +252,78 @@ blockquote {
 }
 
 /* =========================
-   MOBILE
-========================= */
-
-@media (max-width: 768px) {
-
-  .hero h1, .breaking h1 {
-    font-size: 28px;
-  }
-
-  .about-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .video-center iframe {
-    height: 260px;
-  }
-
-  .social {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .social a {
-    width: 90%;
-    justify-content: flex-start;
-  }
-
-  .cta-wrapper {
-    flex-direction: column;
-    align-items: center;
-  }
-}
-
-/* =========================
-   HERO VIDEO (FIX REALE)
-========================= */
-
-.video-placeholder {
-  position: relative;
-  max-width: 900px;
-  width: 100%;
-  cursor: pointer;
-  border-radius: 18px;
-  overflow: hidden;
-}
-
-.video-placeholder img {
-  width: 100%;
-  display: block;
-  border-radius: 18px;
-  transition: transform 0.4s ease;
-}
-
-.video-placeholder::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle at center, rgba(0,0,0,0) 40%, rgba(0,0,0,0.6));
-  pointer-events: none;
-}
-
-.video-placeholder:hover img {
-  transform: scale(1.04);
-}
-
-.play-overlay {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  
-  background: rgba(0,0,0,0.6);
-  border-radius: 50%;
-  
-  width: 70px;
-  height: 70px;
-  
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  
-  font-size: 28px;
-  color: white;
-  
-  backdrop-filter: blur(6px);
-  transition: 0.3s;
-}
-
-.video-placeholder:hover .play-overlay {
-  transform: translate(-50%, -50%) scale(1.1);
-  background: rgba(255,255,255,0.2);
-}
-
-/* =========================
-   HERO CINEMATIC GLOW (RESTORE PREMIUM LOOK)
+   HERO VIDEO (NETFLIX STYLE FIX)
 ========================= */
 
 .video-center {
   position: relative;
+  display: flex;
+  justify-content: center;
 }
 
-/* luce soffusa dietro al video */
+/* glow cinematico */
 .video-center::before {
   content: "";
   position: absolute;
-  top: 50%;
-  left: 50%;
   width: 900px;
   height: 520px;
+  top: 50%;
+  left: 50%;
   transform: translate(-50%, -50%);
-  background: radial-gradient(
-    circle at center,
-    rgba(37, 99, 235, 0.25),
-    rgba(0, 0, 0, 0) 60%
-  );
+  background: radial-gradient(circle, rgba(37,99,235,0.25), transparent 60%);
   filter: blur(40px);
   z-index: 0;
   pointer-events: none;
 }
 
-/* profondità generale del blocco */
+/* container hero */
 .video-placeholder {
   position: relative;
+  width: 100%;
+  max-width: 900px;
+  border-radius: 18px;
+  overflow: hidden;
+  cursor: pointer;
   z-index: 1;
 }
 
-/* glow dinamico leggero */
-.video-placeholder::before {
-  content: "";
+/* immagine */
+.video-placeholder img {
+  width: 100%;
+  display: block;
+  transition: transform 0.6s ease, opacity 0.6s ease;
+}
+
+/* overlay play */
+.play-overlay {
   position: absolute;
-  inset: -20px;
-  background: radial-gradient(
-    circle at center,
-    rgba(37, 99, 235, 0.18),
-    transparent 70%
-  );
-  z-index: -1;
-  filter: blur(30px);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  color: white;
+  backdrop-filter: blur(6px);
+  transition: 0.4s;
+  z-index: 3;
 }
 
-/* =========================
-   HERO NETFLIX TRANSITION
-========================= */
-
-.video-placeholder {
-  position: relative;
-  overflow: hidden;
+/* hover */
+.video-placeholder:hover img {
+  transform: scale(1.04);
 }
 
-/* iframe sopra, ma invisibile inizialmente */
+.video-placeholder:hover .play-overlay {
+  transform: translate(-50%, -50%) scale(1.1);
+}
+
+/* iframe overlay */
 .video-placeholder iframe {
   position: absolute;
   inset: 0;
@@ -493,22 +333,11 @@ blockquote {
 
   opacity: 0;
   transform: scale(1.02);
-  transition: opacity 0.6s ease, transform 0.8s ease;
+  transition: 0.6s ease;
   z-index: 2;
 }
 
-/* immagine sotto */
-.video-placeholder img {
-  transition: opacity 0.6s ease, transform 0.8s ease;
-}
-
-/* overlay play */
-.play-overlay {
-  transition: opacity 0.4s ease, transform 0.4s ease;
-  z-index: 3;
-}
-
-/* stato attivo (playing) */
+/* stato play */
 .video-placeholder.playing img {
   opacity: 0;
   transform: scale(1.05);
@@ -516,10 +345,14 @@ blockquote {
 
 .video-placeholder.playing .play-overlay {
   opacity: 0;
-  transform: translate(-50%, -50%) scale(0.8);
 }
 
 .video-placeholder.playing iframe {
   opacity: 1;
   transform: scale(1);
+}
+
+/* performance micro fix */
+.video-placeholder {
+  transform: translateZ(0);
 }
