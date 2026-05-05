@@ -1,3 +1,39 @@
+/* =========================
+   FONT LOCALI (NO GOOGLE)
+========================= */
+
+@font-face {
+  font-family: 'Inter';
+  src: url('fonts/Inter-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Inter';
+  src: url('fonts/Inter-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Inter';
+  src: url('fonts/Inter-SemiBold.woff2') format('woff2');
+  font-weight: 600;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Inter';
+  src: url('fonts/Inter-ExtraBold.woff2') format('woff2');
+  font-weight: 800;
+  font-display: swap;
+}
+
+/* =========================
+   BASE
+========================= */
+
 body {
   margin: 0;
   font-family: 'Inter', sans-serif;
@@ -160,8 +196,8 @@ body {
   border-radius: 18px;
   box-shadow: 0 0 90px rgba(37,99,235,0.25);
   contain: strict;
-  border: 0; /* FIX */
-  display: block; /* FIX */
+  border: 0;
+  display: block;
 }
 
 /* =========================
@@ -176,15 +212,15 @@ body {
   content-visibility: auto;
   contain-intrinsic-size: 500px;
 
-  overflow: hidden; /* FIX principale */
+  overflow: hidden;
 }
 
 .card {
   transition: transform 0.3s ease;
   contain: paint;
 
-  overflow: hidden; /* FIX principale */
-  border-radius: 14px; /* FIX */
+  overflow: hidden;
+  border-radius: 14px;
 }
 
 .card iframe {
@@ -192,8 +228,8 @@ body {
   height: 200px;
 
   border-radius: 14px;
-  border: 0; /* FIX bordino */
-  display: block; /* FIX rendering */
+  border: 0;
+  display: block;
 }
 
 .card:hover {
