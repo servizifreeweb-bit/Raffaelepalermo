@@ -18,7 +18,6 @@
 
 <link rel="icon" href="logo.png" type="image/png">
 
-<!-- PERFORMANCE FIX -->
 <link rel="stylesheet" href="style.css">
 
 </head>
@@ -53,30 +52,25 @@
 
   <div class="cta-wrapper cta-grid">
 
-  <!-- YOUTUBE PRIMARY CTA -->
-  <a class="cta cta-youtube" 
-     href="https://www.youtube.com/channel/UCv2AtfcakfZytFUnGzV5_LA?sub_confirmation=1"
-     target="_blank" 
-     rel="noopener">
+    <a class="cta cta-youtube"
+       href="https://www.youtube.com/channel/UCv2AtfcakfZytFUnGzV5_LA?sub_confirmation=1"
+       target="_blank" rel="noopener">
+      ▶ Iscriviti su YouTube
+    </a>
 
-    ▶ Iscriviti su YouTube
-  </a>
+    <a class="cta cta-telegram"
+       href="https://t.me/raffaelepalermonews"
+       target="_blank" rel="noopener">
+      ✈ Entra nella Community
+    </a>
 
-  <!-- TELEGRAM SECONDARY CTA -->
-  <a class="cta cta-telegram" 
-     href="https://t.me/raffaelepalermonews"
-     target="_blank" 
-     rel="noopener">
-
-    ✈ Entra nella Community
-  </a>
-
-</div>
+  </div>
 
 </section>
 
-<!-- HERO VIDEO LAZY (FIX LCP) -->
+<!-- HERO VIDEO FIXATO -->
 <section class="main-video reveal">
+
   <div class="video-center">
 
     <div id="main-video" class="video-placeholder">
@@ -92,6 +86,7 @@
     </div>
 
   </div>
+
 </section>
 
 <section class="video-feed reveal center">
@@ -112,43 +107,25 @@
 
       <h2>Chi è Raffaele Palermo</h2>
 
-      <p>
-<strong>Mi occupo di analisi critica, giornalismo indipendente e comunicazione</strong>, 
-con un focus su ciò che accade dietro le notizie: dinamiche di potere, narrazioni e manipolazione dell’informazione.
-</p>
+      <p><strong>Mi occupo di analisi critica, giornalismo indipendente e comunicazione</strong>, con un focus su ciò che accade dietro le notizie: dinamiche di potere, narrazioni e manipolazione dell’informazione.</p>
 
-<p>
-Ho iniziato nel 2020, nel pieno del periodo pandemico, pubblicando online le mie ricerche e analisi.
-</p>
+      <p>Ho iniziato nel 2020, nel pieno del periodo pandemico, pubblicando online le mie ricerche e analisi.</p>
 
-<p>
-Nel 2021 ho sviluppato un progetto editoriale che è diventato rapidamente un punto di riferimento in Italia per l’informazione indipendente, 
-arrivando a superare le <strong>60.000 visite giornaliere</strong>.
-</p>
+      <p>Nel 2021 ho sviluppato un progetto editoriale che è diventato rapidamente un punto di riferimento in Italia per l’informazione indipendente, arrivando a superare le <strong>60.000 visite giornaliere</strong>.</p>
 
-<p>
-Nel 2022 ho scelto di fermarmi per riorganizzare il lavoro, approfondire e costruire una struttura più solida.
-</p>
+      <p>Nel 2022 ho scelto di fermarmi per riorganizzare il lavoro, approfondire e costruire una struttura più solida.</p>
 
-<p>
-Oggi il progetto continua attraverso i contenuti online e una community attiva su più piattaforme:
-<strong>oltre 25.000 iscritti su YouTube</strong>, 3.000 su Telegram, 4500+ su Facebook e Instagram, 6.000 su TikTok.
-</p>
+      <p>Oggi il progetto continua attraverso i contenuti online e una community attiva su più piattaforme:
+<strong>oltre 25.000 iscritti su YouTube</strong>, 3.000 su Telegram, 4500+ su Facebook e Instagram, 6.000 su TikTok.</p>
 
-<p>
-Non sono legato a testate giornalistiche, gruppi editoriali o interessi politici.
-Questo mi permette di lavorare <strong>senza pressioni esterne</strong> e affrontare temi che spesso vengono evitati o semplificati.
-</p>
+      <p>Non sono legato a testate giornalistiche, gruppi editoriali o interessi politici.
+Questo mi permette di lavorare <strong>senza pressioni esterne</strong> e affrontare temi che spesso vengono evitati o semplificati.</p>
 
-<p>
-Qui non trovi narrazioni costruite per piacere, ma <strong>analisi pensate per mettere in discussione</strong>.
-</p>
+      <p>Qui non trovi narrazioni costruite per piacere, ma <strong>analisi pensate per mettere in discussione</strong>.</p>
 
-      <blockquote>
-        🎯 Il mio obiettivo non è dirti cosa pensare. È renderti più difficile da convincere.
-      </blockquote>
+      <blockquote>🎯 Il mio obiettivo non è dirti cosa pensare. È renderti più difficile da convincere.</blockquote>
 
-      <strong>E non è un caso.</strong>.
+      <strong>E non è un caso.</strong>
 
     </div>
 
@@ -178,8 +155,6 @@ Non sono affiliato a piattaforme o domini che utilizzano il mio nome senza autor
 <script>
 window.addEventListener("load", () => {
 
-/* HERO VIDEO - CLICK TO PLAY (NO COOKIE PRELOAD) */
-
 const hero = document.getElementById("main-video");
 const videoId = "VS573-EnX3s";
 
@@ -194,7 +169,6 @@ hero.addEventListener("click", () => {
   `;
 });
 
-/* FEED FIX (MOSTRA ULTIMO VIDEO) */
 setTimeout(() => {
 
 fetch("https://feedvideoyt.servizifreeweb.workers.dev")
@@ -207,11 +181,8 @@ fetch("https://feedvideoyt.servizifreeweb.workers.dev")
 
   grid.innerHTML = videos.slice(0,3).map(v => `
     <div class="card">
-      <iframe 
-        src="https://www.youtube.com/embed/${v.id}"
-        loading="lazy"
-        allowfullscreen>
-      </iframe>
+      <iframe src="https://www.youtube.com/embed/${v.id}"
+      loading="lazy" allowfullscreen></iframe>
     </div>
   `).join("");
 
@@ -219,7 +190,6 @@ fetch("https://feedvideoyt.servizifreeweb.workers.dev")
 
 }, 1200);
 
-/* ANIMAZIONI */
 const obs = new IntersectionObserver(entries => {
   entries.forEach(e => {
     if(e.isIntersecting){
@@ -230,7 +200,6 @@ const obs = new IntersectionObserver(entries => {
 
 document.querySelectorAll(".reveal").forEach(el => obs.observe(el));
 
-/* HEADER */
 window.addEventListener("scroll", () => {
   document.querySelector(".header").classList.toggle("scrolled", window.scrollY > 50);
 });
@@ -238,9 +207,10 @@ window.addEventListener("scroll", () => {
 });
 </script>
 
-  <!-- Cloudflare Web Analytics -->
-  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "13f03ee9a5bf471ab3352aab9f832a12"}'></script>
-  <!-- End Cloudflare Web Analytics -->
-  
+<!-- Cloudflare Web Analytics -->
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js"
+data-cf-beacon='{"token": "13f03ee9a5bf471ab3352aab9f832a12"}'></script>
+<!-- End Cloudflare Web Analytics -->
+
 </body>
 </html>
