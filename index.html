@@ -193,6 +193,9 @@ Questo mi permette di lavorare <strong>senza pressioni esterne</strong> e affron
 <script>
 window.addEventListener("load", () => {
 
+/* ✅ FIX CRITICO: abilita animazioni JS */
+document.documentElement.classList.add("js");
+
 const hero = document.getElementById("main-video");
 const videoId = "VS573-EnX3s";
 
