@@ -200,6 +200,15 @@ body {
   filter: blur(60px);
 }
 
+/* glow più leggero su mobile */
+@media (max-width: 768px) {
+  .video-center::before {
+    width: 120%;
+    height: 300px;
+    filter: blur(40px);
+  }
+}
+
 .video-placeholder {
   position: relative;
   width: 100%;
@@ -335,16 +344,23 @@ body {
 }
 
 /* =========================
-   ANIMAZIONI
+   ANIMAZIONI FIX
 ========================= */
 
+/* visibile di default */
 .reveal {
+  opacity: 1;
+  transform: none;
+}
+
+/* animazioni SOLO se JS attivo */
+.js .reveal {
   opacity: 0;
   transform: translateY(30px);
   transition: 0.6s ease;
 }
 
-.reveal.visible {
+.js .reveal.visible {
   opacity: 1;
   transform: none;
 }
