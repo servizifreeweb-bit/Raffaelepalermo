@@ -171,14 +171,22 @@ const hero = document.getElementById("main-video");
 const videoId = "VS573-EnX3s";
 
 hero.addEventListener("click", () => {
-  hero.innerHTML = `
-    <iframe 
-      src="https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&rel=0"
-      loading="lazy"
-      allow="autoplay; encrypted-media"
-      allowfullscreen>
-    </iframe>
-  `;
+
+  if (hero.classList.contains("playing")) return;
+
+  const iframe = document.createElement("iframe");
+
+  iframe.src = `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&rel=0`;
+  iframe.loading = "lazy";
+  iframe.allow = "autoplay; encrypted-media";
+  iframe.allowFullscreen = true;
+
+  hero.appendChild(iframe);
+
+  requestAnimationFrame(() => {
+    hero.classList.add("playing");
+  });
+
 });
 
 setTimeout(() => {
